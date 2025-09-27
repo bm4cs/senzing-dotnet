@@ -1,0 +1,20 @@
+services:
+  senzing-tools:
+    image: senzing/senzingsdk-tools
+    container_name: sz-tools
+    environment:
+      SENZING_ENGINE_CONFIGURATION_JSON: |
+        {
+          "PIPELINE": {
+            "CONFIGPATH": "/etc/opt/senzing",
+            "RESOURCEPATH": "/opt/senzing/er/resources",
+            "SUPPORTPATH": "/opt/senzing/data"
+          },
+          "SQL": {
+            "CONNECTION": "${SZ_CONNECTION_STRING}"
+          }
+        }
+    volumes:
+      - ./data/sz:/data # sample data
+    restart: unless-stopped
+    command: tail -f /dev/null # keep it running

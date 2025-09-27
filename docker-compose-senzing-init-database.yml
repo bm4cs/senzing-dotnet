@@ -1,0 +1,17 @@
+services:
+  senzing-tools:
+    image: senzing/init-database 
+    container_name: sz-initdb
+    environment:
+      SENZING_ENGINE_CONFIGURATION_JSON: |
+        {
+          "PIPELINE": {
+            "CONFIGPATH": "/etc/opt/senzing",
+            "RESOURCEPATH": "/opt/senzing/er/resources",
+            "SUPPORTPATH": "/opt/senzing/data"
+          },
+          "SQL": {
+            "CONNECTION": "${SZ_CONNECTION_STRING}"
+          }
+        }
+    restart: no
