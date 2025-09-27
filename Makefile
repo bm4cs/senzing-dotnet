@@ -4,10 +4,10 @@ up:
 down:
 	docker-compose -f docker-compose-postgres.yml -f docker-compose-senzing-sdk-tools.yml down
 
-pg-up:
+postgres:
 	docker-compose -f docker-compose-postgres.yml up -d
 
-pg-down:
+postgres-down:
 	docker-compose -f docker-compose-postgres.yml down
 
 postgres-delete:
@@ -16,10 +16,10 @@ postgres-delete:
 initdb:
 	docker-compose -f docker-compose-senzing-init-database.yml up -d
 
-sdktools-up:
+sdktools:
 	docker-compose -f docker-compose-senzing-sdk-tools.yml up -d
 
 sdktools-down:
 	docker-compose -f docker-compose-senzing-sdk-tools.yml down
 
-.PHONY: up down pg-up pg-down pg-delete initdb sdktools-up sdktools-down
+.PHONY: up down postgres postgres-down postgres-delete initdb sdktools sdktools-down

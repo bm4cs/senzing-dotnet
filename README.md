@@ -1,19 +1,21 @@
-# Senzing V4 Containers
+# Senzing V4 .NET Lab
 
-## PostgreSQL
+## Containers
+
+### PostgreSQL
 
 ```sh
-make pg-up
+make postgres
 make initdb
 psql -h localhost -U sz -d G2
 ```
 
-## SDK Tools
+### SDK V4 Tools
 
-This container image includes the native SDK and the .NET 8 wrapper NuGet package `/opt/senzing/er/sdk/dotnet/Senzing.Sdk.4.0.0.nupkg`.
+This container image includes the native SDK, other language SDKs including the .NET 8 NuGet package `/opt/senzing/er/sdk/dotnet/Senzing.Sdk.4.0.0.nupkg`, and various CLI utilities.
 
 ```sh
-make sdktools-up
+make sdktools
 docker exec -it sz-tools bash
 cd /opt/senzing/er/bin
 ```
