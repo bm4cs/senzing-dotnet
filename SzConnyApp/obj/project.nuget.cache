@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "28OMjomd2fE=",
+  "success": true,
+  "projectFilePath": "/home/bms/repos/senzing-dotnet/SzConnyApp/SzConnyApp.csproj",
+  "expectedPackageFiles": [
+    "/home/bms/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
+    "/home/bms/.nuget/packages/newtonsoft.json.schema/4.0.1/newtonsoft.json.schema.4.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

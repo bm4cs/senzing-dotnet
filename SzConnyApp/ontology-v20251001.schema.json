@@ -1,0 +1,160 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Ontology Definition",
+  "description": "Defines the structure and constraints for the cool system",
+  "version": "1.0.0",
+  "createdDate": "2025-09-30",
+
+  "definitions": {
+    "Manifest": {
+      "type": "object",
+      "properties": {
+        "version": { "type": "string" },
+        "createdDate": { "type": "string", "format": "date-time" },
+        "lastModified": { "type": "string", "format": "date-time" },
+        "description": { "type": "string" },
+        "changes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "version": { "type": "string" },
+              "date": { "type": "string", "format": "date-time" },
+              "description": { "type": "string" }
+            },
+            "required": ["version", "date", "description"]
+          }
+        }
+      },
+      "required": ["version", "createdDate", "description"]
+    },
+
+    "ValidationRule": {
+      "type": "object",
+      "oneOf": [
+        {
+          "properties": {
+            "type": { "const": "regex" },
+            "pattern": { "type": "string" },
+            "errorMessage": { "type": "string" }
+          },
+          "required": ["type", "pattern"]
+        },
+        {
+          "properties": {
+            "type": { "const": "length" },
+            "minLength": { "type": "integer" },
+            "maxLength": { "type": "integer" },
+            "errorMessage": { "type": "string" }
+          },
+          "required": ["type"],
+          "anyOf": [
+            { "required": ["minLength"] },
+            { "required": ["maxLength"] }
+          ]
+        }
+      ]
+    },
+
+    "AttributeType": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "dataType": {
+          "type": "string",
+          "enum": ["string", "integer", "boolean", "date", "datetime"]
+        },
+        "validationRules": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/ValidationRule" }
+        },
+        "description": { "type": "string" },
+        "isMandatory": { "type": "boolean" },
+        "cardinality": {
+          "type": "object",
+          "properties": {
+            "min": { "type": "integer", "minimum": 0 },
+            "max": { "type": ["integer", "null"], "maximum": 99999 }
+          }
+        }
+      },
+      "required": ["name", "dataType"]
+    },
+
+    "RecordType": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "baseType": {
+          "type": "string",
+          "enum": ["Person", "Organisation", "Vehicle", "Document", "Weapon"]
+        },
+        "attributes": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              { "$ref": "#/definitions/AttributeType" },
+              { "type": "string" }
+            ]
+          }
+        },
+        "relationships": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "targetType": { "type": "string" },
+              "relationshipType": { "type": "string" },
+              "cardinality": {
+                "type": "object",
+                "properties": {
+                  "min": { "type": "integer", "minimum": 0 },
+                  "max": { "type": ["integer", "null"], "maximum": 99999 }
+                }
+              }
+            },
+            "required": ["targetType", "relationshipType"]
+          }
+        }
+      },
+      "required": ["name", "baseType"]
+    },
+
+    "LinkType": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "sourceTypes": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "targetTypes": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "bidirectional": { "type": "boolean" },
+        "inverseName": { "type": ["string", "null"] },
+        "description": { "type": "string" }
+      },
+      "required": ["name", "sourceTypes", "targetTypes"]
+    }
+  },
+
+  "type": "object",
+  "properties": {
+    "manifest": { "$ref": "#/definitions/Manifest" },
+    "attributeTypes": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/AttributeType" }
+    },
+    "recordTypes": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/RecordType" }
+    },
+    "linkTypes": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/LinkType" }
+    }
+  },
+  "required": ["manifest", "attributeTypes", "recordTypes"]
+}
