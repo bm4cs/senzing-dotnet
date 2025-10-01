@@ -1,106 +1,19 @@
 ﻿using System.Net.Http.Headers;
+using System.Reflection;
 using SzConnyApp.Ontology;
 
 Console.WriteLine("ConnyApp v0.1");
 
-var isValid = Ontology.Validate(
-    """
-    {
-      "manifest": {
-        "version": "0.0.1",
-        "createdDate": "2025-09-30T04:00:00+10:00",
-        "lastModified": "2025-09-30T04:00:00+10:00",
-        "description": "EMS Ontology Definition",
-        "changes": [
-          {
-            "version": "0.0.1",
-            "date": "2025-09-30T04:00:00+10:00",
-            "description": "Initial definition with basic record types and relationships"
-          }
-        ]
-      },
-    
-      "attributeTypes": [
-        {
-          "name": "FullName",
-          "dataType": "string",
-          "validationRules": [
-            {
-              "type": "length",
-              "minLength": 2,
-              "maxLength": 100,
-              "errorMessage": "Full name must be between 2 and 100 characters"
-            }
-          ],
-          "cardinality": {
-            "min": 1,
-            "max": null
-          }
-        },
-        {
-          "name": "RegistrationNumber",
-          "dataType": "string",
-          "validationRules": [
-            {
-              "type": "regex",
-              "pattern": "^[A-Z]{2}\\d{4}$",
-              "errorMessage": "Invalid registration format (expected XX1234)"
-            }
-          ],
-          "cardinality": {
-            "min": 0,
-            "max": 1
-          }
-        }
-      ],
-    
-      "recordTypes": [
-        {
-          "name": "Person",
-          "baseType": "Person",
-          "attributes": [
-            "FullName",
-            {
-              "name": "DateOfBirth",
-              "dataType": "date",
-              "validationRules": [
-                {
-                  "type": "length",
-                  "minLength": 10,
-                  "maxLength": 10,
-                  "errorMessage": "Date must be in YYYY-MM-DD format"
-                }
-              ],
-              "cardinality": {
-                "min": 1,
-                "max": 1
-              }
-            }
-          ],
-          "relationships": [
-            {
-              "targetType": "Vehicle",
-              "relationshipType": "Owns",
-              "cardinality": {
-                "min": 0,
-                "max": null
-              }
-            }
-          ]
-        }
-      ],
-    
-      "linkTypes": [
-        {
-          "name": "Owns",
-          "sourceTypes": ["Person"],
-          "targetTypes": ["Vehicle"],
-          "bidirectional": false,
-          "inverseName": "OwnedBy"
-        }
-      ]
-    }
-    """
-);
+var ontologyInstancePaths = new[]
+{
+    "Ontology/Instances/ems-ontology-v20251001-composite.json",
+    "Ontology/Instances/ems-ontology-v20251001-simple.json",
+};
 
-Console.WriteLine($"JSON Schema validation result: {isValid}");
+foreach (var ontologyPath in ontologyInstancePaths)
+{
+    var isValid = Ontology.Validate(ontologyPath);
+    Console.WriteLine($"'{ontologyPath}' JSON schema check: {(isValid ? "PASS" : "FAIL")}");
+}
+
+Console.WriteLine(Directory.GetCurrentDirectory());

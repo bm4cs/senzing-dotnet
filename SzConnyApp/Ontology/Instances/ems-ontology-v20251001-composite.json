@@ -1,0 +1,402 @@
+{
+  "manifest": {
+    "version": "0.0.1",
+    "createdDate": "2025-09-30T04:00:00+10:00",
+    "lastModified": "2025-09-30T04:00:00+10:00",
+    "description": "EMS Ontology Definition",
+    "changes": [
+      {
+        "version": "0.0.1",
+        "date": "2025-09-30T04:00:00+10:00",
+        "description": "Added Address and Passport composite types, Document and Organisation record types"
+      }
+    ]
+  },
+
+  "attributeTypes": [
+    {
+      "name": "FullName",
+      "dataType": "string",
+      "validationRules": [
+        {
+          "type": "length",
+          "minLength": 2,
+          "maxLength": 100,
+          "errorMessage": "Full name must be between 2 and 100 characters"
+        }
+      ],
+      "cardinality": {
+        "min": 1,
+        "max": null
+      }
+    }
+  ],
+
+  "compositeTypes": [
+    {
+      "name": "Address",
+      "attributes": [
+        {
+          "name": "Line1",
+          "dataType": "string",
+          "validationRules": [
+            {
+              "type": "length",
+              "maxLength": 100,
+              "errorMessage": "Address line must not exceed 100 characters"
+            }
+          ],
+          "cardinality": {
+            "min": 1,
+            "max": 1
+          }
+        },
+        {
+          "name": "Line2",
+          "dataType": "string",
+          "validationRules": [
+            {
+              "type": "length",
+              "maxLength": 100,
+              "errorMessage": "Address line must not exceed 100 characters"
+            }
+          ],
+          "cardinality": {
+            "min": 0,
+            "max": 1
+          }
+        },
+        {
+          "name": "City",
+          "dataType": "string",
+          "validationRules": [
+            {
+              "type": "length",
+              "minLength": 2,
+              "maxLength": 50,
+              "errorMessage": "City name must be between 2 and 50 characters"
+            }
+          ],
+          "cardinality": {
+            "min": 1,
+            "max": 1
+          }
+        },
+        {
+          "name": "State",
+          "dataType": "string",
+          "validationRules": [
+            {
+              "type": "length",
+              "minLength": 2,
+              "maxLength": 50,
+              "errorMessage": "State must be between 2 and 50 characters"
+            }
+          ],
+          "cardinality": {
+            "min": 0,
+            "max": 1
+          }
+        },
+        {
+          "name": "PostCode",
+          "dataType": "string",
+          "validationRules": [
+            {
+              "type": "regex",
+              "pattern": "^[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][ABD-HJLNP-UW-Z]{2}$",
+              "errorMessage": "Invalid postcode format"
+            }
+          ],
+          "cardinality": {
+            "min": 1,
+            "max": 1
+          }
+        },
+        {
+          "name": "Country",
+          "dataType": "string",
+          "validationRules": [
+            {
+              "type": "length",
+              "minLength": 2,
+              "maxLength": 50,
+              "errorMessage": "Country must be between 2 and 50 characters"
+            }
+          ],
+          "cardinality": {
+            "min": 1,
+            "max": 1
+          }
+        },
+        {
+          "name": "Role",
+          "dataType": "string",
+          "allowedValues": ["HOME", "WORK", "MAILING"],
+          "cardinality": {
+            "min": 1,
+            "max": 1
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "Passport",
+      "attributes": [
+        {
+          "name": "Number",
+          "dataType": "string",
+          "validationRules": [
+            {
+              "type": "regex",
+              "pattern": "^[A-Z]{2}\\d{6}$",
+              "errorMessage": "Invalid passport number format (expected XX123456)"
+            }
+          ],
+          "cardinality": {
+            "min": 1,
+            "max": 1
+          }
+        },
+        {
+          "name": "IssueDate",
+          "dataType": "date",
+          "cardinality": {
+            "min": 1,
+            "max": 1
+          }
+        },
+        {
+          "name": "ExpiryDate",
+          "dataType": "date",
+          "cardinality": {
+            "min": 1,
+            "max": 1
+          }
+        },
+        {
+          "name": "IssuingCountry",
+          "dataType": "string",
+          "validationRules": [
+            {
+              "type": "length",
+              "minLength": 2,
+              "maxLength": 50,
+              "errorMessage": "Country must be between 2 and 50 characters"
+            }
+          ],
+          "cardinality": {
+            "min": 1,
+            "max": 1
+          }
+        }
+      ]
+    }
+  ],
+
+  "recordTypes": [
+    {
+      "name": "Person",
+      "baseType": "Person",
+      "attributes": [
+        "FullName",
+        {
+          "name": "DateOfBirth",
+          "dataType": "date",
+          "validationRules": [
+            {
+              "type": "length",
+              "minLength": 10,
+              "maxLength": 10,
+              "errorMessage": "Date must be in YYYY-MM-DD format"
+            }
+          ],
+          "cardinality": {
+            "min": 1,
+            "max": 1
+          }
+        }
+      ],
+      "relationships": [
+        {
+          "targetType": "Address",
+          "relationshipType": "HasAddress",
+          "cardinality": {
+            "min": 0,
+            "max": null
+          }
+        },
+        {
+          "targetType": "Passport",
+          "relationshipType": "HoldsPassport",
+          "cardinality": {
+            "min": 0,
+            "max": 2
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "Organisation",
+      "baseType": "Organisation",
+      "attributes": [
+        {
+          "name": "Name",
+          "dataType": "string",
+          "validationRules": [
+            {
+              "type": "length",
+              "minLength": 2,
+              "maxLength": 200,
+              "errorMessage": "Organisation name must be between 2 and 200 characters"
+            }
+          ],
+          "cardinality": {
+            "min": 1,
+            "max": 1
+          }
+        },
+        {
+          "name": "RegistrationNumber",
+          "dataType": "string",
+          "validationRules": [
+            {
+              "type": "regex",
+              "pattern": "^[A-Z]{2}\\d{6}$",
+              "errorMessage": "Invalid registration format (expected XX123456)"
+            }
+          ],
+          "cardinality": {
+            "min": 1,
+            "max": 1
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "Document",
+      "baseType": "Document",
+      "attributes": [
+        {
+          "name": "DocumentType",
+          "dataType": "string",
+          "allowedValues": ["PASSPORT", "DRIVERS_LICENSE", "ID_CARD", "BIRTH_CERTIFICATE"],
+          "cardinality": {
+            "min": 1,
+            "max": 1
+          }
+        },
+        {
+          "name": "IssueDate",
+          "dataType": "date",
+          "cardinality": {
+            "min": 1,
+            "max": 1
+          }
+        },
+        {
+          "name": "ExpiryDate",
+          "dataType": "date",
+          "cardinality": {
+            "min": 0,
+            "max": 1
+          }
+        },
+        {
+          "name": "IssuingAuthority",
+          "dataType": "string",
+          "cardinality": {
+            "min": 1,
+            "max": 1
+          }
+        }
+      ],
+      "relationships": [
+        {
+          "targetType": "Person",
+          "relationshipType": "BelongsTo",
+          "cardinality": {
+            "min": 1,
+            "max": 1
+          }
+        }
+      ]
+    }
+  ],
+
+  "linkTypes": [
+    {
+      "name": "Owns",
+      "sourceTypes": ["Person", "Organisation"],
+      "targetTypes": ["Vehicle", "Property", "Asset"],
+      "bidirectional": false,
+      "inverseName": "OwnedBy"
+    },
+    {
+      "name": "BelongsTo",
+      "sourceTypes": ["Document", "Asset"],
+      "targetTypes": ["Person", "Organisation"],
+      "bidirectional": false,
+      "inverseName": "Has"
+    },
+    {
+      "name": "RelatedTo",
+      "sourceTypes": ["Person", "Organisation"],
+      "targetTypes": ["Person", "Organisation"],
+      "bidirectional": true,
+      "inverseName": "RelatedTo"
+    },
+    {
+      "name": "MemberOf",
+      "sourceTypes": ["Person"],
+      "targetTypes": ["Organisation"],
+      "bidirectional": false,
+      "inverseName": "HasMember"
+    },
+    {
+      "name": "EmployedBy",
+      "sourceTypes": ["Person"],
+      "targetTypes": ["Organisation"],
+      "bidirectional": false,
+      "inverseName": "Employs"
+    },
+    {
+      "name": "LocatedAt",
+      "sourceTypes": ["Person", "Organisation", "Asset"],
+      "targetTypes": ["Address"],
+      "bidirectional": false,
+      "inverseName": "HasLocation"
+    },
+    {
+      "name": "AssociatedWith",
+      "sourceTypes": ["Person", "Organisation", "Document"],
+      "targetTypes": ["Person", "Organisation", "Document"],
+      "bidirectional": true,
+      "inverseName": "AssociatedWith"
+    },
+    {
+      "name": "Manages",
+      "sourceTypes": ["Person", "Organisation"],
+      "targetTypes": ["Asset", "Project", "Organisation"],
+      "bidirectional": false,
+      "inverseName": "ManagedBy"
+    },
+    {
+      "name": "PartOf",
+      "sourceTypes": ["Organisation", "Project"],
+      "targetTypes": ["Organisation", "Project"],
+      "bidirectional": false,
+      "inverseName": "Contains"
+    },
+    {
+      "name": "LicensedBy",
+      "sourceTypes": ["Person", "Organisation"],
+      "targetTypes": ["Organisation"],
+      "bidirectional": false,
+      "inverseName": "Licenses"
+    }
+  ]
+}

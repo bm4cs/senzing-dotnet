@@ -81,6 +81,28 @@
       "required": ["name", "dataType"]
     },
 
+    "CompositeType": {
+      "type": "object",
+      "properties": {
+        "name": {"type": "string"},
+        "attributes": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {"$ref": "#/definitions/AttributeType"},
+              {"type": "string"}
+            ]
+          }
+        },
+        "validationRules": {
+          "type": "array",
+          "items": {"$ref": "#/definitions/ValidationRule"}
+        },
+        "description": {"type": "string"}
+      },
+      "required": ["name", "attributes"]
+    },
+
     "RecordType": {
       "type": "object",
       "properties": {
@@ -146,6 +168,10 @@
     "attributeTypes": {
       "type": "array",
       "items": { "$ref": "#/definitions/AttributeType" }
+    },
+    "compositeTypes": {
+      "type": "array",
+      "items": {"$ref": "#/definitions/CompositeType"}
     },
     "recordTypes": {
       "type": "array",

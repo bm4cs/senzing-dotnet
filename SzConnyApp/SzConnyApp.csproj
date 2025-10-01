@@ -9,8 +9,14 @@
     <PackageReference Include="Newtonsoft.Json.Schema" Version="4.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="ontology-v20251001.schema.json" />
-    <EmbeddedResource Include="ontology-v20251001.schema.json" />
+    <None Update="Ontology\Schema\ems-ontology-v20251001.schema.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Ontology\Instances\ems-ontology-v20251001-composite.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Ontology\Instances\ems-ontology-v20251001-simple.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
-
 </Project>

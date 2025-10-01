@@ -8,31 +8,34 @@ namespace SzConnyApp.Ontology;
 
 internal abstract class Ontology
 {
+    private static string ReadFile(string relativePath)
+    {
+        using var stream = File.OpenRead($"{Directory.GetCurrentDirectory()}/{relativePath}");
+        using var reader = new StreamReader(stream);
+        return reader.ReadToEnd();
+    }
+
     private static JSchema OntologySchema
     {
         get
         {
-            var assembly = Assembly.GetExecutingAssembly();
-            var resourceName = @"SzConnyApp.ontology-v20251001.schema.json";
-            using var stream = assembly.GetManifestResourceStream(resourceName);
-            using var reader = new StreamReader(stream);
-            var result = reader.ReadToEnd();
-            return JSchema.Parse(result);
+            var schemaContent = ReadFile("Ontology/Schema/ems-ontology-v20251001.schema.json");
+            return JSchema.Parse(schemaContent);
         }
     }
 
-    public static bool Validate(string document)
+    public static bool Validate(string relativePathToInstance)
     {
-        JSchema schema = Ontology.OntologySchema;
-        JObject ontology = JObject.Parse(document);
-        IList<ValidationError> errors = new List<ValidationError>();
-        bool valid = ontology.IsValid(schema, out errors);
+        var instanceContent = ReadFile(relativePathToInstance);
+        JSchema schema = OntologySchema;
+        JObject ontology = JObject.Parse(instanceContent);
+        bool valid = ontology.IsValid(schema, out IList<ValidationError> errors);
 
         foreach (var error in errors)
         {
             Console.WriteLine(error.Message);
         }
-        
+
         return valid;
     }
 }
