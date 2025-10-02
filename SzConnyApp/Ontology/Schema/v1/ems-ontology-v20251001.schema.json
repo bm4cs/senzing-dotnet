@@ -1,9 +1,9 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Ontology Definition",
-  "description": "Defines the structure and constraints for the cool system",
+  "description": "A meta schema, which defines the rules to define a higher order schema",
   "version": "1.0.0",
-  "createdDate": "2025-09-30",
+  "createdDate": "2025-09-30T04:00:00+10:00",
 
   "definitions": {
     "Manifest": {

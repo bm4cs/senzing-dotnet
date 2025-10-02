@@ -1,0 +1,112 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://your-ems-app.com/schemas/ontology.json",
+  "title": "Entity Management System Ontology Manifest",
+  "description": "Defines all RecordTypes, AttributeTypes, and LinkTypes for the EMS application.",
+  "type": "object",
+  "properties": {
+    "manifest": {
+      "type": "object",
+      "description": "Metadata about the ontology definition itself.",
+      "properties": {
+        "ontologyVersion": {
+          "type": "string",
+          "description": "Semantic version of the ontology specification."
+        },
+        "datePublished": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Date and time this ontology version was published."
+        },
+        "author": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "ontologyVersion",
+        "datePublished"
+      ]
+    },
+    "recordTypes": {
+      "type": "object",
+      "description": "A map of all defined RecordTypes.",
+      "properties": {
+        "Person": { "$ref": "#/definitions/RecordTypeDefinition" },
+        "Passport": { "$ref": "#/definitions/RecordTypeDefinition" },
+        "Document": { "$ref": "#/definitions/RecordTypeDefinition" }
+      },
+      "additionalProperties": false
+    },
+    "linkTypes": { "$ref": "linkTypes.json" }
+  },
+  "required": [
+    "manifest",
+    "recordTypes",
+    "linkTypes"
+  ],
+  "definitions": {
+    "RecordTypeDefinition": {
+      "type": "object",
+      "properties": {
+        "description": { "type": "string" },
+        "attributes": {
+          "type": "object",
+          "description": "Definition of all attributes for this RecordType.",
+          "additionalProperties": {
+            "$ref": "#/definitions/AttributeTypeDefinition"
+          }
+        }
+      },
+      "required": [
+        "attributes"
+      ]
+    },
+    "AttributeTypeDefinition": {
+      "type": "object",
+      "properties": {
+        "dataType": {
+          "type": "string",
+          "description": "The primitive or complex data type (e.g., string, integer, object, $ref to another type).",
+          "enum": ["string", "integer", "object", "array", "boolean"]
+        },
+        "format": {
+          "type": "string",
+          "description": "An optional format qualifier (e.g., date-time, email, phone)."
+        },
+        "description": { "type": "string" },
+        "required": { "type": "boolean", "default": false },
+        "isSenzingIdentifier": {
+          "type": "boolean",
+          "description": "Marks this attribute as a key identifier for Senzing correlation."
+        },
+        "items": {
+          "description": "Used if dataType is 'array'. Defines the type of items in the array.",
+          "type": "object",
+          "properties": {
+            "type": { "type": "string" },
+            "$ref": { "type": "string" }
+          }
+        },
+        "properties": {
+          "description": "Used if dataType is 'object'. Defines the nested properties.",
+          "type": "object",
+          "additionalProperties": { "$ref": "#/definitions/AttributeTypeDefinition" }
+        },
+        "$ref": {
+          "type": "string",
+          "description": "Reference to a shared definition (e.g., 'common/metadata.json')"
+        }
+      },
+      "required": [
+        "dataType"
+      ],
+      "oneOf": [
+        { "required": ["dataType"] },
+        { "required": ["$ref"] }
+      ]
+    }
+  }
+}

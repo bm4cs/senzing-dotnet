@@ -1,0 +1,15 @@
+{
+  "title": "Passport Record Type",
+  "allOf": [
+    { "$ref": "../common/metadata.json#/properties/RecordMetadata" }
+  ],
+  "properties": {
+    "PassportNumber": {
+      "dataType": "string",
+      "isSenzingIdentifier": true
+    },
+    "IssuingCountry": { "dataType": "string" },
+    "IssueDate": { "dataType": "string", "format": "date" }
+  },
+  "required": ["PassportNumber"]
+}

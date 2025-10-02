@@ -1,0 +1,81 @@
+{
+  "manifest": {
+    "ontologyVersion": "1.0.0",
+    "datePublished": "2025-10-02T16:30:00Z",
+    "author": "Data Engineering Team",
+    "description": "Initial production ontology for Person and Passport entities."
+  },
+  "recordTypes": {
+    "Person": {
+      "description": "A natural person entity, forming the core of identity records.",
+      "attributes": {
+        "RecordMetadata": {
+          "$ref": "common/metadata.json#/properties/RecordMetadata"
+        },
+        "Name": {
+          "dataType": "string",
+          "isSenzingIdentifier": true,
+          "description": "The full name of the person."
+        },
+        "DOB": {
+          "dataType": "string",
+          "format": "date",
+          "isSenzingIdentifier": true,
+          "description": "Date of Birth."
+        },
+        "Address": {
+          "dataType": "object",
+          "isSenzingIdentifier": true,
+          "description": "Primary residence address.",
+          "properties": {
+            "Street1": { "dataType": "string" },
+            "City": { "dataType": "string" },
+            "PostalCode": { "dataType": "string" }
+          },
+          "required": ["Street1", "City", "PostalCode"]
+        }
+      }
+    },
+    "Passport": {
+      "description": "A travel document entity.",
+      "attributes": {
+        "RecordMetadata": {
+          "$ref": "common/metadata.json#/properties/RecordMetadata"
+        },
+        "PassportNumber": {
+          "dataType": "string",
+          "isSenzingIdentifier": true,
+          "description": "Unique government-issued passport number."
+        },
+        "IssuingCountry": {
+          "dataType": "string",
+          "description": "The country that issued the passport."
+        },
+        "ExpiryDate": {
+          "dataType": "string",
+          "format": "date"
+        }
+      }
+    }
+  },
+  "linkTypes": {
+    "Owns": {
+      "description": "A direct possession relationship (e.g., Person holds a Passport).",
+      "allowedConnections": [
+        {
+          "sourceType": "Person",
+          "targetType": "Passport"
+        }
+      ]
+    },
+    "RelatedTo": {
+      "description": "A generic relationship between any two people.",
+      "allowedConnections": [
+        {
+          "sourceType": "Person",
+          "targetType": "Person"
+        }
+      ]
+    }
+  }
+}

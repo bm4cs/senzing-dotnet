@@ -19,7 +19,7 @@ internal abstract class Ontology
     {
         get
         {
-            var schemaContent = ReadFile("Ontology/Schema/ems-ontology-v20251001.schema.json");
+            var schemaContent = ReadFile("Ontology/Schema/v1/ems-ontology-v20251001.schema.json");
             return JSchema.Parse(schemaContent);
         }
     }

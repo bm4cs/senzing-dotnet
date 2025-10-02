@@ -18,5 +18,17 @@
     <None Update="Ontology\Instances\ems-ontology-v20251001-simple.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Ontology\Instances\v1\ems-ontology-v20251001-composite.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Ontology\Instances\v1\ems-ontology-v20251001-simple.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Ontology\Schema\v1\ems-ontology-v20251001.schema.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Ontology\Schema\v1\" />
   </ItemGroup>
 </Project>

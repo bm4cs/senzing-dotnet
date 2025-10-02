@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://your-ems-app.com/schemas/linkTypes.json",
+  "title": "Entity Link Types",
+  "description": "Defines the allowable relationship types and which entities they connect.",
+  "type": "object",
+  "properties": {
+    "LinkTypeDefinition": {
+      "type": "object",
+      "properties": {
+        "description": { "type": "string" },
+        "allowedConnections": {
+          "type": "array",
+          "description": "Defines the valid source and target RecordTypes for this link.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "sourceType": {
+                "type": "string",
+                "enum": ["Person", "Passport", "Document"]
+              },
+              "targetType": {
+                "type": "string",
+                "enum": ["Person", "Passport", "Document"]
+              }
+            },
+            "required": ["sourceType", "targetType"]
+          }
+        }
+      },
+      "required": ["allowedConnections"]
+    }
+  },
+  "additionalProperties": {
+    "$ref": "#/properties/LinkTypeDefinition"
+  },
+  "definitions": {
+    "LinkTypes": {
+      "Owns": {
+        "description": "A person owns an object or document.",
+        "allowedConnections": [
+          { "sourceType": "Person", "targetType": "Passport" }
+        ]
+      },
+      "BelongsTo": {
+        "description": "A document or object belongs to a Person or Organization.",
+        "allowedConnections": [
+          { "sourceType": "Document", "targetType": "Person" }
+        ]
+      },
+      "RelatedTo": {
+        "description": "A generic relationship used when a specific type is unknown.",
+        "allowedConnections": [
+          { "sourceType": "Person", "targetType": "Person" },
+          { "sourceType": "Document", "targetType": "Document" }
+        ]
+      }
+    }
+  }
+}

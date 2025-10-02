@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://your-ems-app.com/schemas/recordTypes/person.json",
+  "title": "Person Record Type",
+  "description": "Defines the structure for a Person entity record.",
+  "allOf": [
+    { "$ref": "../common/metadata.json#/properties/RecordMetadata" }
+  ],
+  "properties": {
+    "Name": {
+      "dataType": "string",
+      "isSenzingIdentifier": true,
+      "description": "The full name of the person."
+    },
+    "DOB": {
+      "dataType": "string",
+      "format": "date",
+      "isSenzingIdentifier": true,
+      "description": "Date of Birth."
+    },
+    "Phones": {
+      "dataType": "array",
+      "description": "List of phone numbers.",
+      "items": {
+        "type": "string",
+        "format": "phone"
+      }
+    },
+    "Address": {
+      "dataType": "object",
+      "isSenzingIdentifier": true,
+      "description": "A complex, nested object representing a physical address.",
+      "properties": {
+        "Street1": { "dataType": "string" },
+        "Street2": { "dataType": "string" },
+        "City": { "dataType": "string" },
+        "State": { "dataType": "string" },
+        "PostalCode": { "dataType": "string" }
+      },
+      "required": ["Street1", "City", "PostalCode"]
+    }
+  },
+  "required": ["Name", "DOB", "Address"]
+}
