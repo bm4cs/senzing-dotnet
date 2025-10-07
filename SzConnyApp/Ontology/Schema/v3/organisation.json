@@ -21,10 +21,10 @@
       "type": "string"
     },
     "links": {
-      "description": "Allowable relationships from this Organisation entity to others.",
+      "description": "Allowable relationships from this Person entity to others.",
       "type": "array",
       "items": {
-        "$ref": "person.json#/$defs/EntityLink"
+        "$ref": "link.json"
       }
     }
   },

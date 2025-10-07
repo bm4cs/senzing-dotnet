@@ -7,7 +7,7 @@
   },
   "recordTypes": {
     "Person": {
-      "description": "A natural person entity, forming the core of identity records.",
+      "description": "A natural person entity.",
       "attributes": {
         "RecordMetadata": {
           "$ref": "common/metadata.json#/properties/RecordMetadata"

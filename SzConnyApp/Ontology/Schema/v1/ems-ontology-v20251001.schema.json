@@ -126,14 +126,7 @@
             "type": "object",
             "properties": {
               "targetType": { "type": "string" },
-              "relationshipType": { "type": "string" },
-              "cardinality": {
-                "type": "object",
-                "properties": {
-                  "min": { "type": "integer", "minimum": 0 },
-                  "max": { "type": ["integer", "null"], "maximum": 99999 }
-                }
-              }
+              "relationshipType": { "type": "string" }
             },
             "required": ["targetType", "relationshipType"]
           }
