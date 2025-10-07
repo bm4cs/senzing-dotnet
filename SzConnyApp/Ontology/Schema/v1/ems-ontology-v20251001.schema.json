@@ -29,6 +29,13 @@
       "required": ["version", "createdDate", "description"]
     },
 
+    "RecordTypeEnum": {
+      "title": "Entity Type Enumeration",
+      "type": "string",
+      "enum": ["Person", "Passport", "Organisation", "Vehicle", "Document", "Weapon"],
+      "default": "Person"
+    },
+
     "ValidationRule": {
       "type": "object",
       "oneOf": [
@@ -84,21 +91,21 @@
     "CompositeType": {
       "type": "object",
       "properties": {
-        "name": {"type": "string"},
+        "name": { "type": "string" },
         "attributes": {
           "type": "array",
           "items": {
             "anyOf": [
-              {"$ref": "#/definitions/AttributeType"},
-              {"type": "string"}
+              { "$ref": "#/definitions/AttributeType" },
+              { "type": "string" }
             ]
           }
         },
         "validationRules": {
           "type": "array",
-          "items": {"$ref": "#/definitions/ValidationRule"}
+          "items": { "$ref": "#/definitions/ValidationRule" }
         },
-        "description": {"type": "string"}
+        "description": { "type": "string" }
       },
       "required": ["name", "attributes"]
     },
@@ -107,10 +114,6 @@
       "type": "object",
       "properties": {
         "name": { "type": "string" },
-        "baseType": {
-          "type": "string",
-          "enum": ["Person", "Organisation", "Vehicle", "Document", "Weapon"]
-        },
         "attributes": {
           "type": "array",
           "items": {
@@ -125,14 +128,14 @@
           "items": {
             "type": "object",
             "properties": {
-              "targetType": { "type": "string" },
+              "targetType": { "$ref": "#/definitions/RecordTypeEnum" },
               "relationshipType": { "type": "string" }
             },
             "required": ["targetType", "relationshipType"]
           }
         }
       },
-      "required": ["name", "baseType"]
+      "required": ["name"]
     },
 
     "LinkType": {
@@ -164,7 +167,7 @@
     },
     "compositeTypes": {
       "type": "array",
-      "items": {"$ref": "#/definitions/CompositeType"}
+      "items": { "$ref": "#/definitions/CompositeType" }
     },
     "recordTypes": {
       "type": "array",

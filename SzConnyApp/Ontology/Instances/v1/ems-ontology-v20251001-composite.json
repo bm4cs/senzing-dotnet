@@ -150,7 +150,6 @@
   "recordTypes": [
     {
       "name": "Person",
-      "baseType": "Person",
       "attributes": [
         "FullName",
         {
@@ -176,7 +175,6 @@
 
     {
       "name": "Organisation",
-      "baseType": "Organisation",
       "attributes": [
         {
           "name": "Name",
@@ -206,7 +204,6 @@
 
     {
       "name": "Document",
-      "baseType": "Document",
       "attributes": [
         {
           "name": "DocumentType",
