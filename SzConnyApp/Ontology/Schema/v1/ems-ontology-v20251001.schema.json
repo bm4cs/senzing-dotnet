@@ -1,9 +1,10 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Ontology Definition",
-  "description": "A meta schema, which defines the rules to define a higher order schema",
-  "version": "1.0.0",
+  "title": "EMS Ontology Definition",
+  "description": "A meta schema, which defines the rules to define a higher order ontology schema",
+  "version": "1.0.1",
   "createdDate": "2025-09-30T04:00:00+10:00",
+  "lastModified": "2025-10-08T08:17:15+10:00",
 
   "definitions": {
     "Manifest": {
@@ -29,10 +30,44 @@
       "required": ["version", "createdDate", "description"]
     },
 
+    "RecordMetadata": {
+      "type": "object",
+      "properties": {
+        "sourceCode": {
+          "type": "string",
+          "description": "The system or source from which the data record originated (e.g., HR, CRM, DMV)."
+        },
+        "sourceId": {
+          "type": "string",
+          "description": "The unique identifier of the record within the source system."
+        },
+        "dateReceived": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the record was ingested into the EMS."
+        },
+        "securityMarkings": {
+          "type": "array",
+          "description": "Security classification or markings applied to the record (e.g., 'CONFIDENTIAL', 'SECRET').",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": ["sourceCode", "sourceId", "dateReceived"]
+    },
+
     "RecordTypeEnum": {
       "title": "Entity Type Enumeration",
       "type": "string",
-      "enum": ["Person", "Passport", "Organisation", "Vehicle", "Document", "Weapon"],
+      "enum": [
+        "Person",
+        "Passport",
+        "Organisation",
+        "Vehicle",
+        "Document",
+        "Weapon"
+      ],
       "default": "Person"
     },
 
@@ -67,14 +102,6 @@
       "type": "object",
       "properties": {
         "name": { "type": "string" },
-        "dataType": {
-          "type": "string",
-          "enum": ["string", "integer", "boolean", "date", "datetime"]
-        },
-        "validationRules": {
-          "type": "array",
-          "items": { "$ref": "#/definitions/ValidationRule" }
-        },
         "description": { "type": "string" },
         "isMandatory": { "type": "boolean" },
         "cardinality": {
@@ -83,45 +110,117 @@
             "min": { "type": "integer", "minimum": 0 },
             "max": { "type": ["integer", "null"], "maximum": 99999 }
           }
-        }
-      },
-      "required": ["name", "dataType"]
-    },
-
-    "CompositeType": {
-      "type": "object",
-      "properties": {
-        "name": { "type": "string" },
-        "attributes": {
-          "type": "array",
-          "items": {
-            "anyOf": [
-              { "$ref": "#/definitions/AttributeType" },
-              { "type": "string" }
-            ]
-          }
         },
         "validationRules": {
           "type": "array",
           "items": { "$ref": "#/definitions/ValidationRule" }
         },
-        "description": { "type": "string" }
+        "enum": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "dataType": {
+          "type": "string",
+          "enum": ["string", "integer", "boolean", "date", "datetime"]
+        },
+        "attributes": {
+          "type": "array",
+          "description": "Used for composite types, containing nested AttributeType definitions.",
+          "items": {
+            "anyOf": [
+              { "$ref": "#/definitions/AttributeType" },
+              {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "$ref": {
+                    "type": "string",
+                    "description": "Reference to a named attribute in the top-level 'attributeTypes' map."
+                  }
+                },
+                "required": ["name", "$ref"]
+              }
+            ]
+          }
+        }
       },
-      "required": ["name", "attributes"]
+      "oneOf": [
+        {
+          "description": "Simple Attribute: Requires dataType, must NOT have attributes",
+          "required": ["dataType"],
+          "not": { "required": ["attributes"] }
+        },
+        {
+          "description": "Composite Attribute: Requires attributes, must NOT have dataType",
+          "required": ["attributes"],
+          "not": { "required": ["dataType"] }
+        }
+      ]
+    },
+
+    "RecordAttributeReference": {
+      "type": "object",
+      "description": "An attribute defined within a RecordType, which may reference a shared definition.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The attribute's name within this RecordType."
+        },
+        "description": { "type": "string" },
+        "isMandatory": { "type": "boolean" },
+        "cardinality": {
+          "$ref": "#/definitions/AttributeType/properties/cardinality"
+        },
+        "enum": { "$ref": "#/definitions/AttributeType/properties/enum" },
+        "validationRules": {
+          "$ref": "#/definitions/AttributeType/properties/validationRules"
+        },
+        "$ref": {
+          "type": "string",
+          "description": "Stable pointer to a definition in the top-level 'attributeTypes' map."
+        }
+      },
+      "required": ["name"],
+      "oneOf": [
+        { "required": ["$ref"] },
+        { "required": ["dataType"], "not": { "required": ["$ref"] } }
+      ]
+    },
+
+    "BaseRecord": {
+      "type": "object",
+      "description": "Enforces mandatory Metadata composite attribute for all inheriting RecordTypes.",
+      "properties": {
+        "attributes": {
+          "type": "array",
+          "minItems": 1,
+          "contains": {
+            "properties": {
+              "name": { "const": "Metadata" },
+              "$ref": { "const": "#/attributeTypes/MetadataComposite" }
+            },
+            "required": ["name", "$ref"]
+          }
+        }
+      },
+      "required": ["attributes"]
     },
 
     "RecordType": {
+      "allOf": [{ "$ref": "#/definitions/BaseRecord" }],
       "type": "object",
       "properties": {
         "name": { "type": "string" },
+        "description": { "type": "string" },
         "attributes": {
           "type": "array",
           "items": {
             "anyOf": [
-              { "$ref": "#/definitions/AttributeType" },
-              { "type": "string" }
+              { "$ref": "#/definitions/RecordAttributeReference" },
+              { "$ref": "#/definitions/AttributeType" }
             ]
-          }
+          },
+          "description": "Attributes for this record. Can be an inline AttributeType or a RecordAttributeReference."
         },
         "relationships": {
           "type": "array",
@@ -135,7 +234,7 @@
           }
         }
       },
-      "required": ["name"]
+      "required": ["name", "attributes"]
     },
 
     "LinkType": {
@@ -161,14 +260,21 @@
   "type": "object",
   "properties": {
     "manifest": { "$ref": "#/definitions/Manifest" },
+
     "attributeTypes": {
-      "type": "array",
-      "items": { "$ref": "#/definitions/AttributeType" }
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/AttributeType"
+      },
+      "description": "A STABLE map of reusable AttributeType definitions, keyed by their unique name (e.g., FullName, AddressComposite).",
+      "minProperties": 1
     },
+
     "compositeTypes": {
-      "type": "array",
-      "items": { "$ref": "#/definitions/CompositeType" }
+      "description": "Removed as composite logic is now within AttributeType.",
+      "not": {}
     },
+
     "recordTypes": {
       "type": "array",
       "items": { "$ref": "#/definitions/RecordType" }

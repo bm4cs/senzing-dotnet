@@ -6,7 +6,7 @@ Console.WriteLine("ConnyApp v0.1");
 
 var ontologyInstancePaths = new[]
 {
-    "Ontology/Instances/v1/ems-ontology-v20251001-composite.json",
+    "Ontology/Instances/v1/ems-ontology-v20251001-sample.json",
     // "Ontology/Instances/v1/ems-ontology-v20251001-simple.json",
 };
 

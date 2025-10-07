@@ -48,6 +48,9 @@
     <None Update="Ontology\Schema\v3\person.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Ontology\Instances\v1\ems-ontology-v20251001-sample.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Ontology\Schema\v1\" />

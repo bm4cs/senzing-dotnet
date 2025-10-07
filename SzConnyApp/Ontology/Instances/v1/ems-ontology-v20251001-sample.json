@@ -1,0 +1,318 @@
+{
+  "manifest": {
+    "version": "0.0.4",
+    "createdDate": "2025-09-30T04:00:00+10:00",
+    "lastModified": "2025-10-08T08:24:57+10:00",
+    "description": "EMS Ontology Definition",
+    "changes": [
+      {
+        "version": "0.0.4",
+        "date": "2025-10-08T08:24:57+10:00",
+        "description": "Repaired instance data: Added 'name' property to all reusable attributes, and fixed the 'Addresses' composite array definition in RecordTypes."
+      }
+    ]
+  },
+
+  "attributeTypes": {
+    "FullName": {
+      "name": "FullName",
+      "dataType": "string",
+      "validationRules": [
+        {
+          "type": "length",
+          "minLength": 2,
+          "maxLength": 100,
+          "errorMessage": "Full name must be between 2 and 100 characters"
+        }
+      ]
+    },
+    "GivenName": { "name": "GivenName", "dataType": "string" },
+    "Surname": { "name": "Surname", "dataType": "string" },
+    "DateType": { "name": "DateType", "dataType": "date" },
+    "StringType": { "name": "StringType", "dataType": "string" },
+    "GenderEnum": {
+      "name": "GenderEnum",
+      "dataType": "string",
+      "isMandatory": false,
+      "enum": ["MALE", "FEMALE", "OTHER", "UNKNOWN"]
+    },
+    "PhoneNumberType": {
+      "name": "PhoneNumberType",
+      "dataType": "string",
+      "validationRules": [
+        {
+          "type": "regex",
+          "pattern": "^\\+?[1-9]\\d{1,14}$",
+          "errorMessage": "Invalid phone number format (E.164-like)"
+        }
+      ]
+    },
+    "EmailType": {
+      "name": "EmailType",
+      "dataType": "string",
+      "validationRules": [
+        {
+          "type": "regex",
+          "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+          "errorMessage": "Invalid email address format"
+        }
+      ]
+    },
+
+    "MetadataComposite": {
+      "name": "MetadataComposite",
+      "description": "Base metadata for provenance, auditing, and security.",
+      "attributes": [
+        {
+          "name": "SourceSystem",
+          "$ref": "#/attributeTypes/StringType",
+          "isMandatory": true,
+          "description": "The originating system or data set."
+        },
+        {
+          "name": "SourceRecordID",
+          "$ref": "#/attributeTypes/StringType",
+          "isMandatory": true,
+          "description": "The unique ID in the source system."
+        },
+        {
+          "name": "CreatedDate",
+          "$ref": "#/attributeTypes/DateTimeType",
+          "isMandatory": true
+        },
+        {
+          "name": "LastModifiedDate",
+          "$ref": "#/attributeTypes/DateTimeType",
+          "isMandatory": true
+        },
+        {
+          "name": "SecurityMarking",
+          "$ref": "#/attributeTypes/StringType",
+          "isMandatory": false,
+          "enum": ["UNCLASSIFIED", "SECRET", "TOP_SECRET"]
+        }
+      ]
+    },
+
+    "AddressComposite": {
+      "name": "AddressComposite",
+      "attributes": [
+        { "name": "Line1", "dataType": "string", "isMandatory": true },
+        { "name": "Line2", "dataType": "string", "isMandatory": false },
+        { "name": "City", "dataType": "string", "isMandatory": true },
+        { "name": "StateProv", "dataType": "string", "isMandatory": false },
+        { "name": "PostalCode", "dataType": "string", "isMandatory": true },
+        { "name": "Country", "dataType": "string", "isMandatory": true },
+        {
+          "name": "Type",
+          "dataType": "string",
+          "enum": ["CURRENT", "PREVIOUS", "MAILING", "WORK"]
+        }
+      ]
+    },
+
+    "PassportDetailsComposite": {
+      "name": "PassportDetailsComposite",
+      "attributes": [
+        {
+          "name": "PassNum",
+          "dataType": "string",
+          "validationRules": [
+            {
+              "type": "regex",
+              "pattern": "^[A-Z]{2}\\d{6}$",
+              "errorMessage": "Invalid passport number format (expected XX123456)"
+            }
+          ]
+        },
+        { "name": "IssueDate", "$ref": "#/attributeTypes/DateType" },
+        { "name": "ExpiryDate", "$ref": "#/attributeTypes/DateType" },
+        { "name": "IssuingCountry", "$ref": "#/attributeTypes/StringType" }
+      ]
+    }
+  },
+
+  "recordTypes": [
+    {
+      "name": "Person",
+      "description": "An individual person",
+      "attributes": [
+        { "name": "Metadata", "$ref": "#/attributeTypes/MetadataComposite" },
+        { "name": "FullName", "$ref": "#/attributeTypes/FullName" },
+        { "name": "GivenName", "$ref": "#/attributeTypes/GivenName" },
+        { "name": "Surname", "$ref": "#/attributeTypes/Surname" },
+        { "name": "DateOfBirth", "$ref": "#/attributeTypes/DateType" },
+        { "name": "Gender", "$ref": "#/attributeTypes/GenderEnum" },
+        {
+          "name": "PrimaryPhoneNumber",
+          "$ref": "#/attributeTypes/PhoneNumberType"
+        },
+        { "name": "PrimaryEmail", "$ref": "#/attributeTypes/EmailType" },
+
+        {
+          "name": "Addresses",
+          "cardinality": { "min": 0, "max": 99 },
+          "attributes": [
+            { "$ref": "#/attributeTypes/AddressComposite", "name": "Address" }
+          ]
+        },
+
+        {
+          "name": "PrimaryPassport",
+          "$ref": "#/attributeTypes/PassportDetailsComposite"
+        }
+      ],
+      "relationships": [
+        { "targetType": "Passport", "relationshipType": "HasPassport" },
+        { "targetType": "Organisation", "relationshipType": "EmployedBy" }
+      ]
+    },
+
+    {
+      "name": "Organisation",
+      "description": "A legal entity or company",
+      "attributes": [
+        { "name": "Metadata", "$ref": "#/attributeTypes/MetadataComposite" },
+        {
+          "name": "OrgName",
+          "$ref": "#/attributeTypes/StringType",
+          "isMandatory": true
+        },
+        {
+          "name": "OrgType",
+          "$ref": "#/attributeTypes/StringType",
+          "isMandatory": false,
+          "enum": ["CORPORATION", "GOVERNMENT", "NON_PROFIT", "PARTNERSHIP"]
+        },
+        {
+          "name": "BusinessID",
+          "$ref": "#/attributeTypes/StringType",
+          "isMandatory": false,
+          "description": "E.g. ABN, EIN, VAT"
+        },
+        {
+          "name": "PrimaryIndustry",
+          "$ref": "#/attributeTypes/StringType",
+          "isMandatory": false
+        },
+        {
+          "name": "Website",
+          "$ref": "#/attributeTypes/StringType",
+          "isMandatory": false,
+          "validationRules": [
+            {
+              "type": "regex",
+              "pattern": "^(https?:\\/\\/)?([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([\\/\\w \\.-]*)*\\/?$",
+              "errorMessage": "Invalid website URL format"
+            }
+          ]
+        },
+        {
+          "name": "Addresses",
+          "cardinality": { "min": 0, "max": 99 },
+          "attributes": [
+            { "$ref": "#/attributeTypes/AddressComposite", "name": "Address" }
+          ]
+        }
+      ],
+      "relationships": [
+        { "targetType": "Person", "relationshipType": "HasExecutive" }
+      ]
+    },
+
+    {
+      "name": "Passport",
+      "description": "A travel document",
+      "attributes": [
+        { "name": "Metadata", "$ref": "#/attributeTypes/MetadataComposite" },
+        {
+          "name": "PassportNumber",
+          "$ref": "#/attributeTypes/StringType",
+          "isMandatory": true
+        },
+        { "name": "IssueDate", "$ref": "#/attributeTypes/DateType" },
+        { "name": "ExpiryDate", "$ref": "#/attributeTypes/DateType" },
+        { "name": "IssuingCountry", "$ref": "#/attributeTypes/StringType" }
+      ],
+      "relationships": [
+        { "targetType": "Person", "relationshipType": "BelongsTo" }
+      ]
+    },
+
+    {
+      "name": "Document",
+      "description": "Any official paper or digital record",
+      "attributes": [
+        { "name": "Metadata", "$ref": "#/attributeTypes/MetadataComposite" },
+        {
+          "name": "DocumentType",
+          "$ref": "#/attributeTypes/StringType",
+          "isMandatory": true,
+          "enum": [
+            "PASSPORT_COPY",
+            "DRIVERS_LICENSE",
+            "ID_CARD",
+            "BIRTH_CERTIFICATE",
+            "INVOICE",
+            "CONTRACT"
+          ]
+        },
+        {
+          "name": "DocumentRefNum",
+          "$ref": "#/attributeTypes/StringType",
+          "isMandatory": true
+        },
+        { "name": "IssueDate", "$ref": "#/attributeTypes/DateType" },
+        { "name": "ExpiryDate", "$ref": "#/attributeTypes/DateType" },
+        { "name": "IssuingAuthority", "$ref": "#/attributeTypes/StringType" },
+        {
+          "name": "DocumentContentHash",
+          "$ref": "#/attributeTypes/StringType",
+          "isMandatory": false
+        }
+      ],
+      "relationships": [
+        { "targetType": "Person", "relationshipType": "RelatedTo" },
+        { "targetType": "Organisation", "relationshipType": "RelatedTo" }
+      ]
+    }
+  ],
+
+  "linkTypes": [
+    {
+      "name": "Owns",
+      "sourceTypes": ["Person", "Organisation"],
+      "targetTypes": ["Vehicle", "Property", "Asset"],
+      "bidirectional": false,
+      "inverseName": "OwnedBy"
+    },
+    {
+      "name": "BelongsTo",
+      "sourceTypes": ["Passport"],
+      "targetTypes": ["Person"],
+      "bidirectional": false,
+      "inverseName": "HasPassport"
+    },
+    {
+      "name": "RelatedTo",
+      "sourceTypes": ["Person", "Organisation"],
+      "targetTypes": ["Person", "Organisation"],
+      "bidirectional": true,
+      "inverseName": "RelatedTo"
+    },
+    {
+      "name": "EmployedBy",
+      "sourceTypes": ["Person"],
+      "targetTypes": ["Organisation"],
+      "bidirectional": false,
+      "inverseName": "Employs"
+    },
+    {
+      "name": "AssociatedWith",
+      "sourceTypes": ["Person", "Organisation", "Document"],
+      "targetTypes": ["Person", "Organisation", "Document"],
+      "bidirectional": true,
+      "inverseName": "AssociatedWith"
+    }
+  ]
+}
