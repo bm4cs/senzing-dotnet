@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ems.yourcompany.com/schemas/ontology/v1/document.json",
+  "title": "Document Entity",
+  "description": "A concrete entity definition for a generic Document.",
+  "type": "object",
+  "allOf": [{ "$ref": "base.json" }],
+  "properties": {
+    "entityType": {
+      "type": "string",
+      "const": "Document"
+    },
+    "title": {
+      "type": "string"
+    },
+    "documentType": {
+      "type": "string",
+      "description": "e.g., 'PDF', 'Email', 'Report', 'Image'."
+    },
+    "storagePath": {
+      "type": "string",
+      "format": "uri-reference",
+      "description": "Path to the binary file (e.g., S3 URL, internal repository path)."
+    },
+    "links": {
+      "description": "Allowable relationships from this Document entity to others.",
+      "type": "array",
+      "items": {
+        "allOf": [
+          { "$ref": "link.json" },
+          {
+            "properties": {
+              "targetEntityType": {
+                "enum": ["Person", "Organisation", "Event"]
+              },
+              "linkType": {
+                "enum": ["RELATED_TO"]
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "required": ["entityType", "title", "documentType"]
+}

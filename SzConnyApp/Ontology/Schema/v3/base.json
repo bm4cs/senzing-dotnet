@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ems.yourcompany.com/schemas/ontology/v1/base.json",
+  "title": "Base Entity Definition",
+  "description": "Common metadata, provenance, and security fields for all entities.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The internal Entity Management System identifier (the 'golden' record ID)."
+    },
+    "securityMarkings": {
+      "type": "array",
+      "description": "List of security classification markings (e.g., OFFICIAL, SENSITIVE).",
+      "items": { "type": "string" }
+    },
+    "provenance": {
+      "type": "object",
+      "description": "Data about the origin of this entity record.",
+      "properties": {
+        "sourceSystem": {
+          "type": "string",
+          "description": "The system the data originated from (e.g., CRM, HR, Senzing-Feed-A)."
+        },
+        "sourceRecordId": {
+          "type": "string",
+          "description": "The original unique ID of the record in the source system."
+        },
+        "createdDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp of initial record creation in the source system."
+        },
+        "lastUpdatedDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp of the last update to the source record."
+        }
+      },
+      "required": ["sourceSystem", "sourceRecordId", "createdDate"]
+    }
+  },
+  "required": ["id", "provenance"]
+}

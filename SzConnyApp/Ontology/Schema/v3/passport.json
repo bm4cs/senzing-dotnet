@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ems.yourcompany.com/schemas/ontology/v1/passport.json",
+  "title": "Passport Entity",
+  "description": "A concrete entity definition for a Passport document.",
+  "type": "object",
+  "allOf": [{ "$ref": "base.json" }],
+  "properties": {
+    "entityType": {
+      "type": "string",
+      "const": "Passport"
+    },
+    "passportNumber": {
+      "type": "string"
+    },
+    "countryOfIssue": {
+      "type": "string"
+    },
+    "issueDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "expiryDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "links": {
+      "description": "Allowable relationships from this Passport entity to others.",
+      "type": "array",
+      "items": {
+        "allOf": [
+          { "$ref": "link.json" },
+          {
+            "properties": {
+              "targetEntityType": {
+                "enum": ["Person", "Organisation"],
+                "description": "A Passport can only link to a Person (holder) or an Organisation (issuer)."
+              },
+              "linkType": {
+                "$ref": "link.json#/$defs/LinkTypeEnum",
+                "enum": ["HOLDS", "ISSUED_BY"]
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "required": ["entityType", "passportNumber", "countryOfIssue"]
+}

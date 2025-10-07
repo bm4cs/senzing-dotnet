@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ems.yourcompany.com/schemas/ontology/v1/ontology-manifest.json",
+  "title": "EMS Ontology Manifest",
+  "description": "Metadata and global definitions for the Entity Management System (EMS) Ontology.",
+  "type": "object",
+  "properties": {
+    "manifest": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string",
+          "description": "The semantic version of this ontology.",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "default": "1.0.0"
+        },
+        "publishedDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date and time this ontology version was published."
+        },
+        "description": {
+          "type": "string",
+          "default": "Core ontology for Person, Organisation, Passport, and Document entities."
+        }
+      },
+      "required": ["version", "publishedDate"]
+    },
+    "entityTypes": {
+      "type": "array",
+      "description": "A list of all concrete entity types defined in this ontology.",
+      "items": { "type": "string" },
+      "default": ["Person", "Organisation", "Passport", "Document"]
+    },
+    "linkTypes": {
+      "description": "Reference to the full link definition schema.",
+      "$ref": "link.json"
+    }
+  },
+  "required": ["manifest", "linkTypes"]
+}

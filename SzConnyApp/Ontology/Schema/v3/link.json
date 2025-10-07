@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ems.yourcompany.com/schemas/ontology/v1/link.json",
+  "title": "Link Definition and Types",
+  "description": "Defines the allowable link types and the structure for relationship objects.",
+  "type": "object",
+  "properties": {
+    "linkType": {
+      "$ref": "#/$defs/LinkTypeEnum"
+    },
+    "targetEntityType": {
+      "type": "string",
+      "description": "The type of entity being linked to (e.g., Person, Organisation, Passport)."
+    },
+    "targetEntityId": {
+      "type": "string",
+      "description": "The emsId of the target entity."
+    },
+    "isDirectional": {
+      "type": "boolean",
+      "default": true,
+      "description": "Indicates if the link is one-way (e.g., 'Person HOLDS Passport')."
+    }
+  },
+  "required": ["linkType", "targetEntityType", "targetEntityId"],
+  "$defs": {
+    "LinkTypeEnum": {
+      "$id": "https://ems.yourcompany.com/schemas/ontology/v1/link.json#/$defs/LinkTypeEnum",
+      "title": "Link Type Enumeration",
+      "description": "Authoritative list of allowable relationship/link types between entities.",
+      "type": "string",
+      "enum": [
+        "OWNS",
+        "BELONGS_TO",
+        "RELATED_TO",
+        "MEMBER_OF",
+        "EMPLOYED_BY",
+        "ISSUED_BY",
+        "HOLDS",
+        "WAS_PRESENT_AT"
+      ],
+      "default": "RELATED_TO"
+    }
+  }
+}

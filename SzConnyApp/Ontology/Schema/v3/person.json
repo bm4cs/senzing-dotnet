@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ems.yourcompany.com/schemas/ontology/v1/person.json",
+  "title": "Person Entity",
+  "description": "A concrete entity definition for a Person.",
+  "type": "object",
+  "allOf": [{ "$ref": "base.json" }],
+  "properties": {
+    "entityType": {
+      "type": "string",
+      "const": "Person"
+    },
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "dateOfBirth": {
+      "type": "string",
+      "format": "date"
+    },
+    "gender": {
+      "type": "string",
+      "enum": ["Male", "Female", "Other", "Unknown"]
+    },
+    "addresses": {
+      "type": "array",
+      "description": "A list of composite address objects associated with the Person.",
+      "items": {
+        "type": "object",
+        "title": "Address",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["Residential", "Mailing", "Work"],
+            "description": "Type of address."
+          },
+          "streetLine1": { "type": "string" },
+          "streetLine2": { "type": "string" },
+          "city": { "type": "string" },
+          "stateProvince": { "type": "string" },
+          "postalCode": { "type": "string" },
+          "country": { "type": "string" }
+        },
+        "required": ["streetLine1", "city", "country"]
+      }
+    },
+    "links": {
+      "description": "Allowable relationships from this Person entity to others.",
+      "type": "array",
+      "items": {
+        "$ref": "link.json"
+      }
+    }
+  },
+  "required": ["entityType", "firstName", "lastName"]
+}

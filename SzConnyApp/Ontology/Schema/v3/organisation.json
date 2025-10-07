@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ems.yourcompany.com/schemas/ontology/v1/organisation.json",
+  "title": "Organisation Entity",
+  "description": "A concrete entity definition for an Organisation.",
+  "type": "object",
+  "allOf": [{ "$ref": "base.json" }],
+  "properties": {
+    "entityType": {
+      "type": "string",
+      "const": "Organisation"
+    },
+    "name": {
+      "type": "string"
+    },
+    "registrationNumber": {
+      "type": "string",
+      "description": "Company or Tax registration number."
+    },
+    "countryOfRegistration": {
+      "type": "string"
+    },
+    "links": {
+      "description": "Allowable relationships from this Organisation entity to others.",
+      "type": "array",
+      "items": {
+        "$ref": "person.json#/$defs/EntityLink"
+      }
+    }
+  },
+  "required": ["entityType", "name"]
+}

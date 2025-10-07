@@ -3,7 +3,7 @@
     "ontologyVersion": "1.0.0",
     "datePublished": "2025-10-02T16:30:00Z",
     "author": "Data Engineering Team",
-    "description": "Initial production ontology for Person and Passport entities."
+    "description": "Initial ontology for Person and Passport entities."
   },
   "recordTypes": {
     "Person": {
