@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "EMS Ontology Definition",
-  "description": "A meta schema, which defines the rules to define a higher order ontology schema",
+  "description": "A meta schema, which defines the rules to define a higher order schema",
   "version": "1.0.1",
   "createdDate": "2025-09-30T04:00:00+10:00",
   "lastModified": "2025-10-08T08:17:15+10:00",
@@ -28,33 +28,6 @@
         }
       },
       "required": ["version", "createdDate", "description"]
-    },
-
-    "RecordMetadata": {
-      "type": "object",
-      "properties": {
-        "sourceCode": {
-          "type": "string",
-          "description": "The system or source from which the data record originated (e.g., HR, CRM, DMV)."
-        },
-        "sourceId": {
-          "type": "string",
-          "description": "The unique identifier of the record within the source system."
-        },
-        "dateReceived": {
-          "type": "string",
-          "format": "date-time",
-          "description": "Timestamp when the record was ingested into the EMS."
-        },
-        "securityMarkings": {
-          "type": "array",
-          "description": "Security classification or markings applied to the record (e.g., 'CONFIDENTIAL', 'SECRET').",
-          "items": {
-            "type": "string"
-          }
-        }
-      },
-      "required": ["sourceCode", "sourceId", "dateReceived"]
     },
 
     "RecordTypeEnum": {
@@ -258,6 +231,7 @@
   },
 
   "type": "object",
+
   "properties": {
     "manifest": { "$ref": "#/definitions/Manifest" },
 
@@ -266,19 +240,15 @@
       "additionalProperties": {
         "$ref": "#/definitions/AttributeType"
       },
-      "description": "A STABLE map of reusable AttributeType definitions, keyed by their unique name (e.g., FullName, AddressComposite).",
+      "description": "Reusable AttributeType definitions, keyed by their unique name (e.g., FullName, AddressComposite).",
       "minProperties": 1
-    },
-
-    "compositeTypes": {
-      "description": "Removed as composite logic is now within AttributeType.",
-      "not": {}
     },
 
     "recordTypes": {
       "type": "array",
       "items": { "$ref": "#/definitions/RecordType" }
     },
+
     "linkTypes": {
       "type": "array",
       "items": { "$ref": "#/definitions/LinkType" }
