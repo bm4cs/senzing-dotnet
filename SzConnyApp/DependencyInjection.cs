@@ -4,17 +4,18 @@ using Microsoft.Extensions.Logging;
 using Senzing.Sdk;
 using Senzing.Sdk.Core;
 using SzConnyApp.SenzingV4;
+using SzConnyApp.SenzingV4.Commands;
 using SzConnyApp.SenzingV4.Senzing;
 
 namespace SzConnyApp;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection ConfigureSenzing(this IServiceCollection services)
+    public static void ConfigureSenzing(this IServiceCollection services)
     {
         services.AddTransient<ISzEnvironmentWrapper, SzEnvironmentWrapper>();
-        services.AddTransient<IRecordLoader, RecordLoader>();
-        return services;
+        services.AddTransient<IRecordLoaderCommand, RecordLoaderCommand>();
+        services.AddTransient<IRepositoryPurgerCommand, RepositoryPurgerCommand>();
     }
 
     public static void ConfigureLogging(this IServiceCollection services)

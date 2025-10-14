@@ -5,7 +5,7 @@ using Senzing.Sdk.Core;
 
 namespace SzConnyApp.SenzingV4.Senzing;
 
-public class SzEnvironmentWrapper : ISzEnvironmentWrapper
+public sealed class SzEnvironmentWrapper : ISzEnvironmentWrapper
 {
     private readonly SzEnvironment _szEnvironment;
     private readonly ILogger _logger;
@@ -47,7 +47,7 @@ public class SzEnvironmentWrapper : ISzEnvironmentWrapper
         GC.SuppressFinalize(this);
     }
 
-    protected virtual void Dispose(bool disposing)
+    private void Dispose(bool disposing)
     {
         if (_isDisposed)
             return;
@@ -67,8 +67,7 @@ public class SzEnvironmentWrapper : ISzEnvironmentWrapper
         _isDisposed = true;
     }
 
-    public SzEngine Engine
-    {
-        get { return _szEnvironment.GetEngine(); }
-    }
+    public SzEngine Engine => _szEnvironment.GetEngine();
+
+    public SzDiagnostic Diagnostic => _szEnvironment.GetDiagnostic();
 }

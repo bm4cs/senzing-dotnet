@@ -1,30 +1,23 @@
 using Microsoft.Extensions.Logging;
-using Senzing.Sdk;
 using SzConnyApp.SenzingV4.Models;
 using SzConnyApp.SenzingV4.Senzing;
 using static Senzing.Sdk.SzFlags;
 
-namespace SzConnyApp.SenzingV4;
+namespace SzConnyApp.SenzingV4.Commands;
 
-public class RecordLoader : IRecordLoader
+public class RecordLoaderCommand(
+    ISzEnvironmentWrapper szEnvironment,
+    ILogger<RecordLoaderCommand> logger
+) : IRecordLoaderCommand
 {
-    private readonly ILogger<RecordLoader> _logger;
-    private readonly ISzEnvironmentWrapper _szEnvironment;
-
-    public RecordLoader(ISzEnvironmentWrapper szEnvironment, ILogger<RecordLoader> logger)
-    {
-        _logger = logger;
-        _szEnvironment = szEnvironment;
-    }
-
     public void Execute()
     {
-        var szEngine = _szEnvironment.Engine;
+        var szEngine = szEnvironment.Engine;
         foreach (var record in GetRecords())
         {
             // var (dataSourceCode, recordId) = keyTuple;
             szEngine.AddRecord(record.DataSourceCode, record.RecordId, record.JsonText, SzNoFlags);
-            _logger.LogInformation($"Record {record.RecordId} added");
+            logger.LogInformation($"Record {record.RecordId} added");
         }
     }
 
