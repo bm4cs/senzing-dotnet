@@ -1,3 +1,12 @@
 <Solution>
+  <Folder Name="/sln/">
+    <File Path="docker-compose-postgres.yml" />
+    <File Path="docker-compose-senzing-init-database.yml" />
+    <File Path="docker-compose-senzing-sdk-tools.yml" />
+    <File Path="Makefile" />
+    <File Path="README.md" />
+    <File Path=".env" />
+    <File Path=".gitignore" />
+  </Folder>
   <Project Path="SzConnyApp/SzConnyApp.csproj" />
 </Solution>

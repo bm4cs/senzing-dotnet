@@ -1,4 +1,6 @@
 {
+  "$schema": "ontology-v20251001.schema.json",
+
   "manifest": {
     "version": "v20251001",
     "createdDate": "2025-09-30T04:00:00+10:00",
