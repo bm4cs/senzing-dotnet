@@ -23,11 +23,7 @@ public class SzEnvironmentWrapper : ISzEnvironmentWrapper
         var settings = Environment.GetEnvironmentVariable("SENZING_ENGINE_CONFIGURATION_JSON");
         var assembly = Assembly.GetExecutingAssembly();
         var instanceName = assembly.GetName().Name;
-        return SzCoreEnvironment
-            .NewBuilder()
-            .Settings(settings)
-            .InstanceName(instanceName)
-            .Build();
+        return SzCoreEnvironment.NewBuilder().Settings(settings).InstanceName(instanceName).Build();
     }
 
     private void SetupDefaultConfiguration()

@@ -21,7 +21,8 @@ public static class DependencyInjection
     {
         services.AddLogging(loggingBuilder =>
         {
-            loggingBuilder.AddSimpleConsole(options =>
+            loggingBuilder
+                .AddSimpleConsole(options =>
                 {
                     options.IncludeScopes = true;
                     options.TimestampFormat = "[yyyy-MM-dd HH:mm:ss] ";

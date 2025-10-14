@@ -10,13 +10,13 @@ public class RecordLoader : IRecordLoader
 {
     private readonly ILogger<RecordLoader> _logger;
     private readonly ISzEnvironmentWrapper _szEnvironment;
-    
+
     public RecordLoader(ISzEnvironmentWrapper szEnvironment, ILogger<RecordLoader> logger)
     {
         _logger = logger;
         _szEnvironment = szEnvironment;
     }
-    
+
     public void Execute()
     {
         var szEngine = _szEnvironment.Engine;
@@ -27,7 +27,7 @@ public class RecordLoader : IRecordLoader
             _logger.LogInformation($"Record {record.RecordId} added");
         }
     }
-    
+
     private static IList<DumbRecord> GetRecords()
     {
         return
@@ -131,6 +131,4 @@ public class RecordLoader : IRecordLoader
             ),
         ];
     }
-
-    
 }
