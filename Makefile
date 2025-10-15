@@ -16,6 +16,7 @@ postgres-delete:
 initdb:
 	docker compose -f docker-compose-senzing-init-database.yml up
 
+
 sdktools:
 	docker compose -f docker-compose-senzing-sdk-tools.yml up -d
 

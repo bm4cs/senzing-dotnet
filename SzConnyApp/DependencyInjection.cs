@@ -16,6 +16,7 @@ public static class DependencyInjection
         services.AddTransient<ISzEnvironmentWrapper, SzEnvironmentWrapper>();
         services.AddTransient<IRecordLoaderCommand, RecordLoaderCommand>();
         services.AddTransient<IRepositoryPurgerCommand, RepositoryPurgerCommand>();
+        services.AddTransient<ISearchCommand, SearchCommand>();
     }
 
     public static void ConfigureLogging(this IServiceCollection services)
