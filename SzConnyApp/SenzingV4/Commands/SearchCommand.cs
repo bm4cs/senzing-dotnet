@@ -13,6 +13,11 @@ public class SearchCommand(ISzEnvironmentWrapper szEnvironment, ILogger<RecordLo
         foreach (var searchCriteria in GetSearchCriteria())
         {
             var result = szEngine.SearchByAttributes(searchCriteria, SzSearchByAttributesDefaultFlags);
+            
+            // SzConfigGetDataSourceRegistryResponse? dataSourceRegistry = JsonSerializer.Deserialize<SzConfigGetDataSourceRegistryResponse>(jsonString);
+            
+            // TODO: deserialize to strong types
+            
             logger.LogInformation(result);
         }
     }
