@@ -35,3 +35,6 @@ cd /opt/senzing/er/bin
 ## Resources
 
 - [Senzing Docker Quickstart](https://senzing.com/docs/quickstart/quickstart_docker/)
+- [sz-sdk-json-type-definition](https://github.com/senzing-garage/sz-sdk-json-type-definition)
+- [sz_rabbit_consumer-v4](https://github.com/brianmacy/sz_rabbit_consumer-v4)
+- 

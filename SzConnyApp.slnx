@@ -1,4 +1,5 @@
 <Solution>
+  <Folder Name="/development/" />
   <Folder Name="/sln/">
     <File Path="docker-compose-postgres.yml" />
     <File Path="docker-compose-senzing-init-database.yml" />

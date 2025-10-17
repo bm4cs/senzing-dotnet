@@ -14,6 +14,7 @@ public static class DependencyInjection
     public static void ConfigureSenzing(this IServiceCollection services)
     {
         services.AddTransient<ISzEnvironmentWrapper, SzEnvironmentWrapper>();
+        services.AddTransient<IGetEntityCommand, GetEntityCommand>();
         services.AddTransient<IRecordLoaderCommand, RecordLoaderCommand>();
         services.AddTransient<IRepositoryPurgerCommand, RepositoryPurgerCommand>();
         services.AddTransient<ISearchCommand, SearchCommand>();

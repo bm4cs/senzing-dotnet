@@ -23,7 +23,7 @@ public class EntryPoint
         _logger?.LogInformation("ConnyApp v0.1");
 
         return Parser
-            .Default.ParseArguments<LoadOptions, PurgeOptions, SearchOptions>(args)
+            .Default.ParseArguments<GetEntityOptions, LoadOptions, PurgeOptions, SearchOptions>(args)
             .MapResult(
                 (LoadOptions opts) =>
                     RunCommand(serviceProvider.GetService<IRecordLoaderCommand>()),
@@ -31,6 +31,12 @@ public class EntryPoint
                     RunCommand(serviceProvider.GetService<IRepositoryPurgerCommand>()),
                 (SearchOptions opts) =>
                     RunCommand(serviceProvider.GetService<ISearchCommand>()),
+                (GetEntityOptions opts) =>
+                {
+                    var command = serviceProvider.GetService<IGetEntityCommand>();
+                    command.EntityId = opts.EntityId;
+                    return RunCommand(command);
+                },  
                 _ => 1
             );
     }
@@ -39,17 +45,13 @@ public class EntryPoint
     {
         try
         {
-            _logger.LogInformation($"Starting command {command?.GetType().Name}");
             command?.Execute();
         }
         catch (Exception e)
         {
             _logger.LogError(e, "Error executing command");
         }
-        finally
-        {
-            _logger.LogInformation($"Completed command {command?.GetType().Name}");
-        }
+        
         return 0;
     }
 }
@@ -71,3 +73,10 @@ class LoadOptions : IOptions { }
 
 [Verb("search", HelpText = "Search for entities using the mapped JSON entity specification.")]
 class SearchOptions : IOptions { }
+
+[Verb("getentity", HelpText = "Retrieve an entity by ID.")]
+class GetEntityOptions : IOptions
+{
+    [Option('i', "id", Required = true, HelpText = "ID of entity to retrieve.")]
+    public long EntityId { get; set; }
+}

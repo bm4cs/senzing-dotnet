@@ -1,0 +1,108 @@
+{
+    "RESOLVED_ENTITY": {
+        "ENTITY_ID": 1,
+        "FEATURES": {
+            "ID_KEY": [
+                {
+                    "FEAT_DESC": "blank",
+                    "FEAT_DESC_VALUES": [
+                        {
+                            "FEAT_DESC": "blank",
+                            "LIB_FEAT_ID": 1
+                        }
+                    ],
+                    "LIB_FEAT_ID": 1
+                },
+                {
+                    "FEAT_DESC": "blank",
+                    "FEAT_DESC_VALUES": [
+                        {
+                            "FEAT_DESC": "blank",
+                            "LIB_FEAT_ID": 1
+                        }
+                    ],
+                    "LIB_FEAT_ID": 1
+                },
+                {
+                    "FEAT_DESC": "blank",
+                    "FEAT_DESC_VALUES": [
+                        {
+                            "FEAT_DESC": "blank",
+                            "LIB_FEAT_ID": 1
+                        }
+                    ],
+                    "LIB_FEAT_ID": 1
+                }
+            ],
+            "NAME": [
+                {
+                    "FEAT_DESC": "blank",
+                    "FEAT_DESC_VALUES": [
+                        {
+                            "FEAT_DESC": "blank",
+                            "LIB_FEAT_ID": 1
+                        }
+                    ],
+                    "LIB_FEAT_ID": 1,
+                    "USAGE_TYPE": "blank"
+                }
+            ],
+            "NAME_KEY": [
+                {
+                    "FEAT_DESC": "blank",
+                    "FEAT_DESC_VALUES": [
+                        {
+                            "FEAT_DESC": "blank",
+                            "LIB_FEAT_ID": 1
+                        }
+                    ],
+                    "LIB_FEAT_ID": 1
+                },
+                {
+                    "FEAT_DESC": "blank",
+                    "FEAT_DESC_VALUES": [
+                        {
+                            "FEAT_DESC": "blank",
+                            "LIB_FEAT_ID": 1
+                        }
+                    ],
+                    "LIB_FEAT_ID": 1
+                }
+            ],
+            "PASSPORT": [
+                {
+                    "FEAT_DESC": "blank",
+                    "FEAT_DESC_VALUES": [
+                        {
+                            "FEAT_DESC": "blank",
+                            "LIB_FEAT_ID": 1
+                        }
+                    ],
+                    "LIB_FEAT_ID": 1
+                },
+                {
+                    "FEAT_DESC": "blank",
+                    "FEAT_DESC_VALUES": [
+                        {
+                            "FEAT_DESC": "blank",
+                            "LIB_FEAT_ID": 1
+                        }
+                    ],
+                    "LIB_FEAT_ID": 1
+                }
+            ],
+            "SSN": [
+                {
+                    "FEAT_DESC": "blank",
+                    "FEAT_DESC_VALUES": [
+                        {
+                            "FEAT_DESC": "blank",
+                            "LIB_FEAT_ID": 1
+                        }
+                    ],
+                    "LIB_FEAT_ID": 1
+                }
+            ]
+        }
+    }
+}

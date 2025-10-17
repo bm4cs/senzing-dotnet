@@ -1,0 +1,30 @@
+{
+    "ELEMENTS": [
+        {
+            "FELEM_CODE": "TOKENIZED_NM",
+            "FELEM_VALUE": "ROBERT|SMITH"
+        },
+        {
+            "FELEM_CODE": "CATEGORY",
+            "FELEM_VALUE": "PERSON"
+        },
+        {
+            "FELEM_CODE": "CULTURE",
+            "FELEM_VALUE": "ANGLO"
+        },
+        {
+            "FELEM_CODE": "GIVEN_NAME",
+            "FELEM_VALUE": "Robert"
+        },
+        {
+            "FELEM_CODE": "SUR_NAME",
+            "FELEM_VALUE": "Smith"
+        },
+        {
+            "FELEM_CODE": "FULL_NAME",
+            "FELEM_VALUE": "Robert Smith"
+        }
+    ],
+    "FTYPE_CODE": "NAME",
+    "LIB_FEAT_ID": 1
+}

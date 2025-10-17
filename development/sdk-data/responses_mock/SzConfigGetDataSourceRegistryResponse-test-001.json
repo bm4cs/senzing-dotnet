@@ -1,0 +1,36 @@
+{
+    "DATA_SOURCES": [
+        {
+            "DSRC_CODE": "blank",
+            "DSRC_ID": 1
+        },
+        {
+            "DSRC_CODE": "blank",
+            "DSRC_ID": 1
+        },
+        {
+            "DSRC_CODE": "blank",
+            "DSRC_ID": 1
+        },
+        {
+            "DSRC_CODE": "blank",
+            "DSRC_ID": 1
+        },
+        {
+            "DSRC_CODE": "blank",
+            "DSRC_ID": 1
+        },
+        {
+            "DSRC_CODE": "blank",
+            "DSRC_ID": 1
+        },
+        {
+            "DSRC_CODE": "blank",
+            "DSRC_ID": 1
+        },
+        {
+            "DSRC_CODE": "blank",
+            "DSRC_ID": 1
+        }
+    ]
+}

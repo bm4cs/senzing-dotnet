@@ -1,0 +1,12 @@
+{
+    "AFFECTED_ENTITIES": [
+        {
+            "ENTITY_ID": 100002
+        }
+    ],
+    "DATA_SOURCE": "TEST",
+    "INTERESTING_ENTITIES": {
+        "ENTITIES": []
+    },
+    "RECORD_ID": "DELETE_TEST"
+}

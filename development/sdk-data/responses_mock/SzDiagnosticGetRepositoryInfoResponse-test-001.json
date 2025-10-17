@@ -1,0 +1,9 @@
+{
+    "dataStores": [
+        {
+            "id": "CORE",
+            "location": "/home/senzing/senzing-garage.git/sz-sdk-go-core/target/test/szdiagnostic/G2C.db",
+            "type": "sqlite3"
+        }
+    ]
+}

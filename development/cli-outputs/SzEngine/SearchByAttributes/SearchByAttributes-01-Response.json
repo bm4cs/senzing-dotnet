@@ -1,0 +1,204 @@
+{
+  "RESOLVED_ENTITIES": [
+    {
+      "MATCH_INFO": {
+        "MATCH_LEVEL_CODE": "RESOLVED",
+        "MATCH_KEY": "+NAME+DOB+SSN",
+        "ERRULE_CODE": "SF1_PNAME_CSTAB",
+        "CANDIDATE_KEYS": {
+          "ID_KEY": [{ "FEAT_ID": 469, "FEAT_DESC": "SSN=521-21-2123" }],
+          "NAMEDATE_KEY": [
+            { "FEAT_ID": 457, "FEAT_DESC": "MN|SUE|DOB.MMYY_HASH=0698" },
+            { "FEAT_ID": 458, "FEAT_DESC": "MN|SSN|DOB=91506" },
+            { "FEAT_ID": 459, "FEAT_DESC": "MN|SUE|DOB=91506" },
+            { "FEAT_ID": 460, "FEAT_DESC": "MN|SUE|DOB.MMDD_HASH=1506" },
+            { "FEAT_ID": 461, "FEAT_DESC": "MN|SSN|DOB.MMYY_HASH=0698" },
+            { "FEAT_ID": 462, "FEAT_DESC": "MN|SSN|DOB.MMDD_HASH=1506" }
+          ],
+          "NAMEID_KEY": [
+            { "FEAT_ID": 470, "FEAT_DESC": "MN|SUE|SSN=2123" },
+            { "FEAT_ID": 471, "FEAT_DESC": "MN|SSN|SSN=2123" }
+          ],
+          "NAME_KEY": [
+            { "FEAT_ID": 455, "FEAT_DESC": "MN|SUE" },
+            { "FEAT_ID": 456, "FEAT_DESC": "MN|SSN" }
+          ],
+          "SSN": [{ "FEAT_ID": 474, "FEAT_DESC": "521212123" }]
+        },
+        "FEATURE_SCORES": {
+          "DOB": [
+            {
+              "INBOUND_FEAT_ID": -3,
+              "INBOUND_FEAT_DESC": "15/6/1998",
+              "CANDIDATE_FEAT_ID": 454,
+              "CANDIDATE_FEAT_DESC": "6/15/98",
+              "SCORE": 100,
+              "ADDITIONAL_SCORES": { "FULL_SCORE": 100 },
+              "SCORE_BUCKET": "SAME",
+              "SCORE_BEHAVIOR": "FMES"
+            }
+          ],
+          "NAME": [
+            {
+              "INBOUND_FEAT_ID": -2,
+              "INBOUND_FEAT_DESC": "Susan Moony",
+              "CANDIDATE_FEAT_ID": 480,
+              "CANDIDATE_FEAT_DESC": "Susan Moony",
+              "CANDIDATE_FEAT_USAGE_TYPE": "PRIMARY",
+              "SCORE": 100,
+              "ADDITIONAL_SCORES": {
+                "GNR_FN": 100,
+                "GNR_SN": -1,
+                "GNR_GN": -1,
+                "GENERATION_MATCH": -1,
+                "GNR_ON": -1
+              },
+              "SCORE_BUCKET": "SAME",
+              "SCORE_BEHAVIOR": "NAME"
+            }
+          ],
+          "SSN": [
+            {
+              "INBOUND_FEAT_ID": 474,
+              "INBOUND_FEAT_DESC": "521212123",
+              "CANDIDATE_FEAT_ID": 474,
+              "CANDIDATE_FEAT_DESC": "521212123",
+              "SCORE": 100,
+              "ADDITIONAL_SCORES": { "FULL_SCORE": 100 },
+              "SCORE_BUCKET": "SAME",
+              "SCORE_BEHAVIOR": "F1ES"
+            }
+          ]
+        }
+      },
+      "ENTITY": {
+        "RESOLVED_ENTITY": {
+          "ENTITY_ID": 49,
+          "ENTITY_NAME": "Susan Mooney",
+          "FEATURES": {
+            "ADDRESS": [
+              {
+                "FEAT_DESC": "638 Downey St, Salem, OR",
+                "LIB_FEAT_ID": 473,
+                "USAGE_TYPE": "HOME",
+                "FEAT_DESC_VALUES": [
+                  {
+                    "FEAT_DESC": "638 Downey St, Salem, OR",
+                    "LIB_FEAT_ID": 473
+                  }
+                ]
+              },
+              {
+                "FEAT_DESC": "Adventura Aparments 638 Downey St, Salem, OR",
+                "LIB_FEAT_ID": 481,
+                "USAGE_TYPE": "MAILING",
+                "FEAT_DESC_VALUES": [
+                  {
+                    "FEAT_DESC": "Adventura Aparments 638 Downey St, Salem, OR",
+                    "LIB_FEAT_ID": 481
+                  }
+                ]
+              }
+            ],
+            "DOB": [
+              {
+                "FEAT_DESC": "6/15/98",
+                "LIB_FEAT_ID": 454,
+                "FEAT_DESC_VALUES": [
+                  { "FEAT_DESC": "6/15/98", "LIB_FEAT_ID": 454 }
+                ]
+              }
+            ],
+            "DRLIC": [
+              {
+                "FEAT_DESC": "8923322 OR",
+                "LIB_FEAT_ID": 466,
+                "FEAT_DESC_VALUES": [
+                  { "FEAT_DESC": "8923322 OR", "LIB_FEAT_ID": 466 }
+                ]
+              }
+            ],
+            "NAME": [
+              {
+                "FEAT_DESC": "Susanne Mooney",
+                "LIB_FEAT_ID": 463,
+                "USAGE_TYPE": "PRIMARY",
+                "FEAT_DESC_VALUES": [
+                  { "FEAT_DESC": "Susanne Mooney", "LIB_FEAT_ID": 463 },
+                  { "FEAT_DESC": "Susan Mooney", "LIB_FEAT_ID": 453 },
+                  { "FEAT_DESC": "Susan Moonie", "LIB_FEAT_ID": 472 },
+                  { "FEAT_DESC": "Susan Moony", "LIB_FEAT_ID": 480 }
+                ]
+              }
+            ],
+            "PASSPORT": [
+              {
+                "FEAT_DESC": "1231345345 US",
+                "LIB_FEAT_ID": 464,
+                "FEAT_DESC_VALUES": [
+                  { "FEAT_DESC": "1231345345 US", "LIB_FEAT_ID": 464 }
+                ]
+              }
+            ],
+            "RECORD_TYPE": [
+              {
+                "FEAT_DESC": "PERSON",
+                "LIB_FEAT_ID": 10,
+                "FEAT_DESC_VALUES": [
+                  { "FEAT_DESC": "PERSON", "LIB_FEAT_ID": 10 }
+                ]
+              }
+            ],
+            "SSN": [
+              {
+                "FEAT_DESC": "521-21-2123",
+                "LIB_FEAT_ID": 468,
+                "FEAT_DESC_VALUES": [
+                  { "FEAT_DESC": "521-21-2123", "LIB_FEAT_ID": 468 },
+                  { "FEAT_DESC": "521212123", "LIB_FEAT_ID": 474 }
+                ]
+              }
+            ]
+          },
+          "RECORD_SUMMARY": [{ "DATA_SOURCE": "CUSTOMERS", "RECORD_COUNT": 6 }]
+        }
+      }
+    }
+  ],
+  "SEARCH_STATISTICS": [
+    {
+      "CANDIDATE_KEYS": {
+        "FEATURE_TYPES": [
+          { "FTYPE_CODE": "DOB", "FOUND": 0, "NOT_FOUND": 1, "GENERIC": 0 },
+          { "FTYPE_CODE": "SSN", "FOUND": 1, "NOT_FOUND": 0, "GENERIC": 0 },
+          {
+            "FTYPE_CODE": "NAME_KEY",
+            "FOUND": 2,
+            "NOT_FOUND": 0,
+            "GENERIC": 0
+          },
+          { "FTYPE_CODE": "ID_KEY", "FOUND": 1, "NOT_FOUND": 0, "GENERIC": 0 },
+          {
+            "FTYPE_CODE": "SEARCH_KEY",
+            "FOUND": 0,
+            "NOT_FOUND": 1,
+            "GENERIC": 0
+          },
+          {
+            "FTYPE_CODE": "NAMEDATE_KEY",
+            "FOUND": 6,
+            "NOT_FOUND": 0,
+            "GENERIC": 0
+          },
+          {
+            "FTYPE_CODE": "NAMEID_KEY",
+            "FOUND": 2,
+            "NOT_FOUND": 0,
+            "GENERIC": 0
+          }
+        ],
+        "SUMMARY": { "FOUND": 12, "NOT_FOUND": 2, "GENERIC": 0 }
+      }
+    }
+  ]
+}

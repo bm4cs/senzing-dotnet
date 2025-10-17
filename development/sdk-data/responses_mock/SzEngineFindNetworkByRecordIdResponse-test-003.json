@@ -1,0 +1,318 @@
+{
+    "ENTITIES": [
+        {
+            "RELATED_ENTITIES": [
+                {
+                    "ENTITY_ID": 1,
+                    "ERRULE_CODE": "blank",
+                    "IS_AMBIGUOUS": 1,
+                    "IS_DISCLOSED": 1,
+                    "MATCH_KEY": "blank",
+                    "MATCH_LEVEL": 1,
+                    "MATCH_LEVEL_CODE": "blank"
+                }
+            ],
+            "RESOLVED_ENTITY": {
+                "ENTITY_ID": 1,
+                "ENTITY_NAME": "blank",
+                "LAST_SEEN_DT": "2024-01-01T01:01:01+00:00",
+                "RECORD_SUMMARY": [
+                    {
+                        "DATA_SOURCE": "blank",
+                        "FIRST_SEEN_DT": "2024-01-01T01:01:01+00:00",
+                        "LAST_SEEN_DT": "2024-01-01T01:01:01+00:00",
+                        "RECORD_COUNT": 1
+                    }
+                ]
+            }
+        },
+        {
+            "RELATED_ENTITIES": [
+                {
+                    "ENTITY_ID": 1,
+                    "ERRULE_CODE": "blank",
+                    "IS_AMBIGUOUS": 1,
+                    "IS_DISCLOSED": 1,
+                    "MATCH_KEY": "blank",
+                    "MATCH_LEVEL": 1,
+                    "MATCH_LEVEL_CODE": "blank"
+                },
+                {
+                    "ENTITY_ID": 1,
+                    "ERRULE_CODE": "blank",
+                    "IS_AMBIGUOUS": 1,
+                    "IS_DISCLOSED": 1,
+                    "MATCH_KEY": "blank",
+                    "MATCH_LEVEL": 1,
+                    "MATCH_LEVEL_CODE": "blank"
+                }
+            ],
+            "RESOLVED_ENTITY": {
+                "ENTITY_ID": 1,
+                "ENTITY_NAME": "blank",
+                "LAST_SEEN_DT": "2024-01-01T01:01:01+00:00",
+                "RECORD_SUMMARY": [
+                    {
+                        "DATA_SOURCE": "blank",
+                        "FIRST_SEEN_DT": "2024-01-01T01:01:01+00:00",
+                        "LAST_SEEN_DT": "2024-01-01T01:01:01+00:00",
+                        "RECORD_COUNT": 1
+                    }
+                ]
+            }
+        },
+        {
+            "RELATED_ENTITIES": [
+                {
+                    "ENTITY_ID": 1,
+                    "ERRULE_CODE": "blank",
+                    "IS_AMBIGUOUS": 1,
+                    "IS_DISCLOSED": 1,
+                    "MATCH_KEY": "blank",
+                    "MATCH_LEVEL": 1,
+                    "MATCH_LEVEL_CODE": "blank"
+                },
+                {
+                    "ENTITY_ID": 1,
+                    "ERRULE_CODE": "blank",
+                    "IS_AMBIGUOUS": 1,
+                    "IS_DISCLOSED": 1,
+                    "MATCH_KEY": "blank",
+                    "MATCH_LEVEL": 1,
+                    "MATCH_LEVEL_CODE": "blank"
+                },
+                {
+                    "ENTITY_ID": 1,
+                    "ERRULE_CODE": "blank",
+                    "IS_AMBIGUOUS": 1,
+                    "IS_DISCLOSED": 1,
+                    "MATCH_KEY": "blank",
+                    "MATCH_LEVEL": 1,
+                    "MATCH_LEVEL_CODE": "blank"
+                }
+            ],
+            "RESOLVED_ENTITY": {
+                "ENTITY_ID": 1,
+                "ENTITY_NAME": "blank",
+                "LAST_SEEN_DT": "2024-01-01T01:01:01+00:00",
+                "RECORD_SUMMARY": [
+                    {
+                        "DATA_SOURCE": "blank",
+                        "FIRST_SEEN_DT": "2024-01-01T01:01:01+00:00",
+                        "LAST_SEEN_DT": "2024-01-01T01:01:01+00:00",
+                        "RECORD_COUNT": 1
+                    }
+                ]
+            }
+        },
+        {
+            "RELATED_ENTITIES": [
+                {
+                    "ENTITY_ID": 1,
+                    "ERRULE_CODE": "blank",
+                    "IS_AMBIGUOUS": 1,
+                    "IS_DISCLOSED": 1,
+                    "MATCH_KEY": "blank",
+                    "MATCH_LEVEL": 1,
+                    "MATCH_LEVEL_CODE": "blank"
+                },
+                {
+                    "ENTITY_ID": 1,
+                    "ERRULE_CODE": "blank",
+                    "IS_AMBIGUOUS": 1,
+                    "IS_DISCLOSED": 1,
+                    "MATCH_KEY": "blank",
+                    "MATCH_LEVEL": 1,
+                    "MATCH_LEVEL_CODE": "blank"
+                }
+            ],
+            "RESOLVED_ENTITY": {
+                "ENTITY_ID": 1,
+                "ENTITY_NAME": "blank",
+                "LAST_SEEN_DT": "2024-01-01T01:01:01+00:00",
+                "RECORD_SUMMARY": [
+                    {
+                        "DATA_SOURCE": "blank",
+                        "FIRST_SEEN_DT": "2024-01-01T01:01:01+00:00",
+                        "LAST_SEEN_DT": "2024-01-01T01:01:01+00:00",
+                        "RECORD_COUNT": 1
+                    }
+                ]
+            }
+        },
+        {
+            "RELATED_ENTITIES": [
+                {
+                    "ENTITY_ID": 1,
+                    "ERRULE_CODE": "blank",
+                    "IS_AMBIGUOUS": 1,
+                    "IS_DISCLOSED": 1,
+                    "MATCH_KEY": "blank",
+                    "MATCH_LEVEL": 1,
+                    "MATCH_LEVEL_CODE": "blank"
+                },
+                {
+                    "ENTITY_ID": 1,
+                    "ERRULE_CODE": "blank",
+                    "IS_AMBIGUOUS": 1,
+                    "IS_DISCLOSED": 1,
+                    "MATCH_KEY": "blank",
+                    "MATCH_LEVEL": 1,
+                    "MATCH_LEVEL_CODE": "blank"
+                }
+            ],
+            "RESOLVED_ENTITY": {
+                "ENTITY_ID": 1,
+                "ENTITY_NAME": "blank",
+                "LAST_SEEN_DT": "2024-01-01T01:01:01+00:00",
+                "RECORD_SUMMARY": [
+                    {
+                        "DATA_SOURCE": "blank",
+                        "FIRST_SEEN_DT": "2024-01-01T01:01:01+00:00",
+                        "LAST_SEEN_DT": "2024-01-01T01:01:01+00:00",
+                        "RECORD_COUNT": 1
+                    }
+                ]
+            }
+        },
+        {
+            "RELATED_ENTITIES": [
+                {
+                    "ENTITY_ID": 1,
+                    "ERRULE_CODE": "blank",
+                    "IS_AMBIGUOUS": 1,
+                    "IS_DISCLOSED": 1,
+                    "MATCH_KEY": "blank",
+                    "MATCH_LEVEL": 1,
+                    "MATCH_LEVEL_CODE": "blank"
+                },
+                {
+                    "ENTITY_ID": 1,
+                    "ERRULE_CODE": "blank",
+                    "IS_AMBIGUOUS": 1,
+                    "IS_DISCLOSED": 1,
+                    "MATCH_KEY": "blank",
+                    "MATCH_LEVEL": 1,
+                    "MATCH_LEVEL_CODE": "blank"
+                }
+            ],
+            "RESOLVED_ENTITY": {
+                "ENTITY_ID": 1,
+                "ENTITY_NAME": "blank",
+                "LAST_SEEN_DT": "2024-01-01T01:01:01+00:00",
+                "RECORD_SUMMARY": [
+                    {
+                        "DATA_SOURCE": "blank",
+                        "FIRST_SEEN_DT": "2024-01-01T01:01:01+00:00",
+                        "LAST_SEEN_DT": "2024-01-01T01:01:01+00:00",
+                        "RECORD_COUNT": 1
+                    }
+                ]
+            }
+        },
+        {
+            "RELATED_ENTITIES": [
+                {
+                    "ENTITY_ID": 1,
+                    "ERRULE_CODE": "blank",
+                    "IS_AMBIGUOUS": 1,
+                    "IS_DISCLOSED": 1,
+                    "MATCH_KEY": "blank",
+                    "MATCH_LEVEL": 1,
+                    "MATCH_LEVEL_CODE": "blank"
+                },
+                {
+                    "ENTITY_ID": 1,
+                    "ERRULE_CODE": "blank",
+                    "IS_AMBIGUOUS": 1,
+                    "IS_DISCLOSED": 1,
+                    "MATCH_KEY": "blank",
+                    "MATCH_LEVEL": 1,
+                    "MATCH_LEVEL_CODE": "blank"
+                },
+                {
+                    "ENTITY_ID": 1,
+                    "ERRULE_CODE": "blank",
+                    "IS_AMBIGUOUS": 1,
+                    "IS_DISCLOSED": 1,
+                    "MATCH_KEY": "blank",
+                    "MATCH_LEVEL": 1,
+                    "MATCH_LEVEL_CODE": "blank"
+                }
+            ],
+            "RESOLVED_ENTITY": {
+                "ENTITY_ID": 1,
+                "ENTITY_NAME": "blank",
+                "LAST_SEEN_DT": "2024-01-01T01:01:01+00:00",
+                "RECORD_SUMMARY": [
+                    {
+                        "DATA_SOURCE": "blank",
+                        "FIRST_SEEN_DT": "2024-01-01T01:01:01+00:00",
+                        "LAST_SEEN_DT": "2024-01-01T01:01:01+00:00",
+                        "RECORD_COUNT": 1
+                    }
+                ]
+            }
+        },
+        {
+            "RELATED_ENTITIES": [
+                {
+                    "ENTITY_ID": 1,
+                    "ERRULE_CODE": "blank",
+                    "IS_AMBIGUOUS": 1,
+                    "IS_DISCLOSED": 1,
+                    "MATCH_KEY": "blank",
+                    "MATCH_LEVEL": 1,
+                    "MATCH_LEVEL_CODE": "blank"
+                },
+                {
+                    "ENTITY_ID": 1,
+                    "ERRULE_CODE": "blank",
+                    "IS_AMBIGUOUS": 1,
+                    "IS_DISCLOSED": 1,
+                    "MATCH_KEY": "blank",
+                    "MATCH_LEVEL": 1,
+                    "MATCH_LEVEL_CODE": "blank"
+                }
+            ],
+            "RESOLVED_ENTITY": {
+                "ENTITY_ID": 1,
+                "ENTITY_NAME": "blank",
+                "LAST_SEEN_DT": "2024-01-01T01:01:01+00:00",
+                "RECORD_SUMMARY": [
+                    {
+                        "DATA_SOURCE": "blank",
+                        "FIRST_SEEN_DT": "2024-01-01T01:01:01+00:00",
+                        "LAST_SEEN_DT": "2024-01-01T01:01:01+00:00",
+                        "RECORD_COUNT": 1
+                    }
+                ]
+            }
+        }
+    ],
+    "ENTITY_PATHS": [
+        {
+            "END_ENTITY_ID": 1,
+            "ENTITIES": [],
+            "START_ENTITY_ID": 1
+        },
+        {
+            "END_ENTITY_ID": 1,
+            "ENTITIES": [
+                0,
+                0,
+                0
+            ],
+            "START_ENTITY_ID": 1
+        },
+        {
+            "END_ENTITY_ID": 1,
+            "ENTITIES": [
+                0,
+                0,
+                0
+            ],
+            "START_ENTITY_ID": 1
+        }
+    ]
+}

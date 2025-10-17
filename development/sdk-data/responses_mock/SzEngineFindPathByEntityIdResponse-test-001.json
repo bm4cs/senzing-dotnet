@@ -1,0 +1,29 @@
+{
+    "ENTITIES": [
+        {
+            "RELATED_ENTITIES": [],
+            "RESOLVED_ENTITY": {
+                "ENTITY_ID": 1,
+                "ENTITY_NAME": "Robert Smith",
+                "LAST_SEEN_DT": "2024-01-01T01:01:01+00:00",
+                "RECORD_SUMMARY": [
+                    {
+                        "DATA_SOURCE": "CUSTOMERS",
+                        "FIRST_SEEN_DT": "2024-01-01T01:01:01+00:00",
+                        "LAST_SEEN_DT": "2024-01-01T01:01:01+00:00",
+                        "RECORD_COUNT": 3
+                    }
+                ]
+            }
+        }
+    ],
+    "ENTITY_PATHS": [
+        {
+            "END_ENTITY_ID": 1,
+            "ENTITIES": [
+                1
+            ],
+            "START_ENTITY_ID": 1
+        }
+    ]
+}

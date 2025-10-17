@@ -1,4 +1,7 @@
+using System.Text.Json;
 using Microsoft.Extensions.Logging;
+using Senzing.Typedef;
+// using Newtonsoft.Json;
 using SzConnyApp.SenzingV4.Senzing;
 using static Senzing.Sdk.SzFlags;
 
@@ -12,13 +15,9 @@ public class SearchCommand(ISzEnvironmentWrapper szEnvironment, ILogger<RecordLo
         var szEngine = szEnvironment.Engine;
         foreach (var searchCriteria in GetSearchCriteria())
         {
-            var result = szEngine.SearchByAttributes(searchCriteria, SzSearchByAttributesDefaultFlags);
-            
-            // SzConfigGetDataSourceRegistryResponse? dataSourceRegistry = JsonSerializer.Deserialize<SzConfigGetDataSourceRegistryResponse>(jsonString);
-            
-            // TODO: deserialize to strong types
-            
-            logger.LogInformation(result);
+            var jsonString = szEngine.SearchByAttributes(searchCriteria, SzSearchByAttributesDefaultFlags);
+            var searchResponse = JsonSerializer.Deserialize<SzEngineSearchByAttributesResponse>(jsonString);
+            logger.LogInformation($"Search hits: {searchResponse.ResolvedEntities.Count}");
         }
     }
 

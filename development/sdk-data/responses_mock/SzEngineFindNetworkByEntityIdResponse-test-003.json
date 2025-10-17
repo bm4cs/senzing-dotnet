@@ -1,0 +1,237 @@
+{
+    "ENTITIES": [
+        {
+            "RELATED_ENTITIES": [
+                {
+                    "ENTITY_ID": 1,
+                    "ERRULE_CODE": "blank",
+                    "IS_AMBIGUOUS": 1,
+                    "IS_DISCLOSED": 1,
+                    "MATCH_KEY": "blank",
+                    "MATCH_LEVEL": 1,
+                    "MATCH_LEVEL_CODE": "blank"
+                },
+                {
+                    "ENTITY_ID": 1,
+                    "ERRULE_CODE": "blank",
+                    "IS_AMBIGUOUS": 1,
+                    "IS_DISCLOSED": 1,
+                    "MATCH_KEY": "blank",
+                    "MATCH_LEVEL": 1,
+                    "MATCH_LEVEL_CODE": "blank"
+                },
+                {
+                    "ENTITY_ID": 1,
+                    "ERRULE_CODE": "blank",
+                    "IS_AMBIGUOUS": 1,
+                    "IS_DISCLOSED": 1,
+                    "MATCH_KEY": "blank",
+                    "MATCH_LEVEL": 1,
+                    "MATCH_LEVEL_CODE": "blank"
+                },
+                {
+                    "ENTITY_ID": 1,
+                    "ERRULE_CODE": "blank",
+                    "IS_AMBIGUOUS": 1,
+                    "IS_DISCLOSED": 1,
+                    "MATCH_KEY": "blank",
+                    "MATCH_LEVEL": 1,
+                    "MATCH_LEVEL_CODE": "blank"
+                },
+                {
+                    "ENTITY_ID": 1,
+                    "ERRULE_CODE": "blank",
+                    "IS_AMBIGUOUS": 1,
+                    "IS_DISCLOSED": 1,
+                    "MATCH_KEY": "blank",
+                    "MATCH_LEVEL": 1,
+                    "MATCH_LEVEL_CODE": "blank"
+                }
+            ],
+            "RESOLVED_ENTITY": {
+                "ENTITY_ID": 1
+            }
+        },
+        {
+            "RELATED_ENTITIES": [
+                {
+                    "ENTITY_ID": 1,
+                    "ERRULE_CODE": "blank",
+                    "IS_AMBIGUOUS": 1,
+                    "IS_DISCLOSED": 1,
+                    "MATCH_KEY": "blank",
+                    "MATCH_LEVEL": 1,
+                    "MATCH_LEVEL_CODE": "blank"
+                }
+            ],
+            "RESOLVED_ENTITY": {
+                "ENTITY_ID": 1
+            }
+        },
+        {
+            "RELATED_ENTITIES": [
+                {
+                    "ENTITY_ID": 1,
+                    "ERRULE_CODE": "blank",
+                    "IS_AMBIGUOUS": 1,
+                    "IS_DISCLOSED": 1,
+                    "MATCH_KEY": "blank",
+                    "MATCH_LEVEL": 1,
+                    "MATCH_LEVEL_CODE": "blank"
+                }
+            ],
+            "RESOLVED_ENTITY": {
+                "ENTITY_ID": 1
+            }
+        },
+        {
+            "RELATED_ENTITIES": [
+                {
+                    "ENTITY_ID": 1,
+                    "ERRULE_CODE": "blank",
+                    "IS_AMBIGUOUS": 1,
+                    "IS_DISCLOSED": 1,
+                    "MATCH_KEY": "blank",
+                    "MATCH_LEVEL": 1,
+                    "MATCH_LEVEL_CODE": "blank"
+                }
+            ],
+            "RESOLVED_ENTITY": {
+                "ENTITY_ID": 1
+            }
+        },
+        {
+            "RELATED_ENTITIES": [
+                {
+                    "ENTITY_ID": 1,
+                    "ERRULE_CODE": "blank",
+                    "IS_AMBIGUOUS": 1,
+                    "IS_DISCLOSED": 1,
+                    "MATCH_KEY": "blank",
+                    "MATCH_LEVEL": 1,
+                    "MATCH_LEVEL_CODE": "blank"
+                },
+                {
+                    "ENTITY_ID": 1,
+                    "ERRULE_CODE": "blank",
+                    "IS_AMBIGUOUS": 1,
+                    "IS_DISCLOSED": 1,
+                    "MATCH_KEY": "blank",
+                    "MATCH_LEVEL": 1,
+                    "MATCH_LEVEL_CODE": "blank"
+                },
+                {
+                    "ENTITY_ID": 1,
+                    "ERRULE_CODE": "blank",
+                    "IS_AMBIGUOUS": 1,
+                    "IS_DISCLOSED": 1,
+                    "MATCH_KEY": "blank",
+                    "MATCH_LEVEL": 1,
+                    "MATCH_LEVEL_CODE": "blank"
+                }
+            ],
+            "RESOLVED_ENTITY": {
+                "ENTITY_ID": 1
+            }
+        },
+        {
+            "RELATED_ENTITIES": [
+                {
+                    "ENTITY_ID": 1,
+                    "ERRULE_CODE": "blank",
+                    "IS_AMBIGUOUS": 1,
+                    "IS_DISCLOSED": 1,
+                    "MATCH_KEY": "blank",
+                    "MATCH_LEVEL": 1,
+                    "MATCH_LEVEL_CODE": "blank"
+                }
+            ],
+            "RESOLVED_ENTITY": {
+                "ENTITY_ID": 1
+            }
+        },
+        {
+            "RELATED_ENTITIES": [
+                {
+                    "ENTITY_ID": 1,
+                    "ERRULE_CODE": "blank",
+                    "IS_AMBIGUOUS": 1,
+                    "IS_DISCLOSED": 1,
+                    "MATCH_KEY": "blank",
+                    "MATCH_LEVEL": 1,
+                    "MATCH_LEVEL_CODE": "blank"
+                }
+            ],
+            "RESOLVED_ENTITY": {
+                "ENTITY_ID": 1
+            }
+        },
+        {
+            "RELATED_ENTITIES": [
+                {
+                    "ENTITY_ID": 1,
+                    "ERRULE_CODE": "blank",
+                    "IS_AMBIGUOUS": 1,
+                    "IS_DISCLOSED": 1,
+                    "MATCH_KEY": "blank",
+                    "MATCH_LEVEL": 1,
+                    "MATCH_LEVEL_CODE": "blank"
+                },
+                {
+                    "ENTITY_ID": 1,
+                    "ERRULE_CODE": "blank",
+                    "IS_AMBIGUOUS": 1,
+                    "IS_DISCLOSED": 1,
+                    "MATCH_KEY": "blank",
+                    "MATCH_LEVEL": 1,
+                    "MATCH_LEVEL_CODE": "blank"
+                },
+                {
+                    "ENTITY_ID": 1,
+                    "ERRULE_CODE": "blank",
+                    "IS_AMBIGUOUS": 1,
+                    "IS_DISCLOSED": 1,
+                    "MATCH_KEY": "blank",
+                    "MATCH_LEVEL": 1,
+                    "MATCH_LEVEL_CODE": "blank"
+                }
+            ],
+            "RESOLVED_ENTITY": {
+                "ENTITY_ID": 1
+            }
+        },
+        {
+            "RELATED_ENTITIES": [
+                {
+                    "ENTITY_ID": 1,
+                    "ERRULE_CODE": "blank",
+                    "IS_AMBIGUOUS": 1,
+                    "IS_DISCLOSED": 1,
+                    "MATCH_KEY": "blank",
+                    "MATCH_LEVEL": 1,
+                    "MATCH_LEVEL_CODE": "blank"
+                }
+            ],
+            "RESOLVED_ENTITY": {
+                "ENTITY_ID": 1
+            }
+        },
+        {
+            "RELATED_ENTITIES": [
+                {
+                    "ENTITY_ID": 1,
+                    "ERRULE_CODE": "blank",
+                    "IS_AMBIGUOUS": 1,
+                    "IS_DISCLOSED": 1,
+                    "MATCH_KEY": "blank",
+                    "MATCH_LEVEL": 1,
+                    "MATCH_LEVEL_CODE": "blank"
+                }
+            ],
+            "RESOLVED_ENTITY": {
+                "ENTITY_ID": 1
+            }
+        }
+    ],
+    "ENTITY_PATHS": []
+}
