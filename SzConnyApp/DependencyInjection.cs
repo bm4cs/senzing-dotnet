@@ -15,6 +15,7 @@ public static class DependencyInjection
     {
         services.AddTransient<ISzEnvironmentWrapper, SzEnvironmentWrapper>();
         services.AddTransient<IGetEntityCommand, GetEntityCommand>();
+        services.AddTransient<IExportRecordsCommand, ExportRecordsCommand>();
         services.AddTransient<IRecordLoaderCommand, RecordLoaderCommand>();
         services.AddTransient<IRepositoryPurgerCommand, RepositoryPurgerCommand>();
         services.AddTransient<ISearchCommand, SearchCommand>();

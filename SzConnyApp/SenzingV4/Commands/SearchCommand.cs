@@ -15,8 +15,13 @@ public class SearchCommand(ISzEnvironmentWrapper szEnvironment, ILogger<RecordLo
         var szEngine = szEnvironment.Engine;
         foreach (var searchCriteria in GetSearchCriteria())
         {
-            var jsonString = szEngine.SearchByAttributes(searchCriteria, SzSearchByAttributesDefaultFlags);
-            var searchResponse = JsonSerializer.Deserialize<SzEngineSearchByAttributesResponse>(jsonString);
+            var jsonString = szEngine.SearchByAttributes(
+                searchCriteria,
+                SzSearchByAttributesDefaultFlags
+            );
+            var searchResponse = JsonSerializer.Deserialize<SzEngineSearchByAttributesResponse>(
+                jsonString
+            );
             logger.LogInformation($"Search hits: {searchResponse.ResolvedEntities.Count}");
         }
     }
@@ -31,7 +36,8 @@ public class SearchCommand(ISzEnvironmentWrapper szEnvironment, ILogger<RecordLo
                 "DATE_OF_BIRTH": "15/6/1998",
                 "SSN_NUMBER": "521212123"
             }
-            """);
+            """
+        );
 
         records.Add(
             """
@@ -40,7 +46,8 @@ public class SearchCommand(ISzEnvironmentWrapper szEnvironment, ILogger<RecordLo
                 "NAME_LAST": "Smith",
                 "ADDR_FULL": "123 Main Street Las Vegas NV 89132"
             }
-            """);
+            """
+        );
 
         records.Add(
             """
@@ -49,7 +56,8 @@ public class SearchCommand(ISzEnvironmentWrapper szEnvironment, ILogger<RecordLo
                 "NAME_LAST": "Yamanaka",
                 "ADDR_FULL": "787 Rotary Drive Rotorville FL 78720"
             }
-            """);
+            """
+        );
 
         return records;
     }

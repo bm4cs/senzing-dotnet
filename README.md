@@ -32,6 +32,35 @@ docker exec -it sz-tools bash
 cd /opt/senzing/er/bin
 ```
 
+
+### sz-file-loader
+
+To ingest sample data, first register data sources with `sz_configtool`:
+
+```sh
+sz_configtool
+addDataSource CUSTOMERS
+addDataSource REFERENCE
+addDataSource WATCHLIST
+save
+```
+
+Then hydrate them with `senzing/sz-file-loader`:
+
+1. `docker run -it --rm -u $UID -v ${PWD}/data/senzing/data/:/data --env SENZING_ENGINE_CONFIGURATION_JSON senzing/sz-file-loader -f /data/customers.jsonl`
+2. `docker run -it --rm -u $UID -v ${PWD}/data/senzing/data/:/data --env SENZING_ENGINE_CONFIGURATION_JSON senzing/sz-file-loader -f /data/reference.jsonl`
+3. `docker run -it --rm -u $UID -v ${PWD}/data/senzing/data/:/data --env SENZING_ENGINE_CONFIGURATION_JSON senzing/sz-file-loader -f /data/watchlist.jsonl`
+
+Explore with `sz_explorer`.
+
+## Resources
+
+- [How does an Entity ID behave](https://senzing.zendesk.com/hc/en-us/articles/4415858978067-How-does-an-Entity-ID-behave)
+- [code-snippets-v4](https://github.com/Senzing/code-snippets-v4)
+- [Entity Specification](https://senzing.com/docs/entity_specification/)
+
+
+
 ## Resources
 
 - [Senzing Docker Quickstart](https://senzing.com/docs/quickstart/quickstart_docker/)

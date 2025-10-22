@@ -23,20 +23,27 @@ public class EntryPoint
         _logger?.LogInformation("ConnyApp v0.1");
 
         return Parser
-            .Default.ParseArguments<GetEntityOptions, LoadOptions, PurgeOptions, SearchOptions>(args)
+            .Default.ParseArguments<
+                GetEntityOptions,
+                ExportRecordsOptions,
+                LoadOptions,
+                PurgeOptions,
+                SearchOptions
+            >(args)
             .MapResult(
+                (ExportRecordsOptions opts) =>
+                    RunCommand(serviceProvider.GetService<IExportRecordsCommand>()),
                 (LoadOptions opts) =>
                     RunCommand(serviceProvider.GetService<IRecordLoaderCommand>()),
                 (PurgeOptions opts) =>
                     RunCommand(serviceProvider.GetService<IRepositoryPurgerCommand>()),
-                (SearchOptions opts) =>
-                    RunCommand(serviceProvider.GetService<ISearchCommand>()),
+                (SearchOptions opts) => RunCommand(serviceProvider.GetService<ISearchCommand>()),
                 (GetEntityOptions opts) =>
                 {
                     var command = serviceProvider.GetService<IGetEntityCommand>();
                     command.EntityId = opts.EntityId;
                     return RunCommand(command);
-                },  
+                },
                 _ => 1
             );
     }
@@ -51,7 +58,7 @@ public class EntryPoint
         {
             _logger.LogError(e, "Error executing command");
         }
-        
+
         return 0;
     }
 }
@@ -80,3 +87,6 @@ class GetEntityOptions : IOptions
     [Option('i', "id", Required = true, HelpText = "ID of entity to retrieve.")]
     public long EntityId { get; set; }
 }
+
+[Verb("export", HelpText = "Export all entities in the Senzing corpus.")]
+class ExportRecordsOptions : IOptions { }

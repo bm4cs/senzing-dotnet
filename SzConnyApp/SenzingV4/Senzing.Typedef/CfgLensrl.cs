@@ -19,12 +19,23 @@ namespace Senzing.Typedef
 
     public class CfgLensrlJsonConverter : JsonConverter<CfgLensrl>
     {
-        public override CfgLensrl Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override CfgLensrl Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
         {
-            return new CfgLensrl { Value = JsonSerializer.Deserialize<IList<Fixme>>(ref reader, options) };
+            return new CfgLensrl
+            {
+                Value = JsonSerializer.Deserialize<IList<Fixme>>(ref reader, options),
+            };
         }
 
-        public override void Write(Utf8JsonWriter writer, CfgLensrl value, JsonSerializerOptions options)
+        public override void Write(
+            Utf8JsonWriter writer,
+            CfgLensrl value,
+            JsonSerializerOptions options
+        )
         {
             JsonSerializer.Serialize<IList<Fixme>>(writer, value.Value, options);
         }

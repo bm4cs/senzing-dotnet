@@ -19,14 +19,31 @@ namespace Senzing.Typedef
 
     public class CandidateKeysForMatchInfoJsonConverter : JsonConverter<CandidateKeysForMatchInfo>
     {
-        public override CandidateKeysForMatchInfo Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override CandidateKeysForMatchInfo Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
         {
-            return new CandidateKeysForMatchInfo { Value = JsonSerializer.Deserialize<IDictionary<string, IList<MatchInfoForAttribute>>>(ref reader, options) };
+            return new CandidateKeysForMatchInfo
+            {
+                Value = JsonSerializer.Deserialize<
+                    IDictionary<string, IList<MatchInfoForAttribute>>
+                >(ref reader, options),
+            };
         }
 
-        public override void Write(Utf8JsonWriter writer, CandidateKeysForMatchInfo value, JsonSerializerOptions options)
+        public override void Write(
+            Utf8JsonWriter writer,
+            CandidateKeysForMatchInfo value,
+            JsonSerializerOptions options
+        )
         {
-            JsonSerializer.Serialize<IDictionary<string, IList<MatchInfoForAttribute>>>(writer, value.Value, options);
+            JsonSerializer.Serialize<IDictionary<string, IList<MatchInfoForAttribute>>>(
+                writer,
+                value.Value,
+                options
+            );
         }
     }
 }

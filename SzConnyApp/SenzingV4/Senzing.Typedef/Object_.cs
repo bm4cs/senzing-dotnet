@@ -18,12 +18,20 @@ namespace Senzing.Typedef
 
     public class Object_JsonConverter : JsonConverter<Object_>
     {
-        public override Object_ Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override Object_ Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
         {
             return new Object_ { Value = JsonSerializer.Deserialize<string>(ref reader, options) };
         }
 
-        public override void Write(Utf8JsonWriter writer, Object_ value, JsonSerializerOptions options)
+        public override void Write(
+            Utf8JsonWriter writer,
+            Object_ value,
+            JsonSerializerOptions options
+        )
         {
             JsonSerializer.Serialize<string>(writer, value.Value, options);
         }

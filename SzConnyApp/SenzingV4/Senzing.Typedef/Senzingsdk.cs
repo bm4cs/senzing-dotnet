@@ -18,12 +18,23 @@ namespace Senzing.Typedef
 
     public class SenzingsdkJsonConverter : JsonConverter<Senzingsdk>
     {
-        public override Senzingsdk Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override Senzingsdk Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
         {
-            return new Senzingsdk { Value = JsonSerializer.Deserialize<object>(ref reader, options) };
+            return new Senzingsdk
+            {
+                Value = JsonSerializer.Deserialize<object>(ref reader, options),
+            };
         }
 
-        public override void Write(Utf8JsonWriter writer, Senzingsdk value, JsonSerializerOptions options)
+        public override void Write(
+            Utf8JsonWriter writer,
+            Senzingsdk value,
+            JsonSerializerOptions options
+        )
         {
             JsonSerializer.Serialize<object>(writer, value.Value, options);
         }

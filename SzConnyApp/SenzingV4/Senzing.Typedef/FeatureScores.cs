@@ -19,14 +19,31 @@ namespace Senzing.Typedef
 
     public class FeatureScoresJsonConverter : JsonConverter<FeatureScores>
     {
-        public override FeatureScores Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override FeatureScores Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
         {
-            return new FeatureScores { Value = JsonSerializer.Deserialize<IDictionary<string, IList<FeatureScoreForAttribute>>>(ref reader, options) };
+            return new FeatureScores
+            {
+                Value = JsonSerializer.Deserialize<
+                    IDictionary<string, IList<FeatureScoreForAttribute>>
+                >(ref reader, options),
+            };
         }
 
-        public override void Write(Utf8JsonWriter writer, FeatureScores value, JsonSerializerOptions options)
+        public override void Write(
+            Utf8JsonWriter writer,
+            FeatureScores value,
+            JsonSerializerOptions options
+        )
         {
-            JsonSerializer.Serialize<IDictionary<string, IList<FeatureScoreForAttribute>>>(writer, value.Value, options);
+            JsonSerializer.Serialize<IDictionary<string, IList<FeatureScoreForAttribute>>>(
+                writer,
+                value.Value,
+                options
+            );
         }
     }
 }

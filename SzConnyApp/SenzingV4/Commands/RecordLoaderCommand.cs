@@ -18,20 +18,29 @@ public class RecordLoaderCommand(
         var szEngine = szEnvironment.Engine;
         foreach (var record in GetRecords())
         {
-            var jsonString = szEngine.AddRecord(record.DataSourceCode, record.RecordId, record.EntityJson, SzFlag.SzWithInfo);
-            var addRecordResponse = JsonSerializer.Deserialize<SzEngineAddRecordResponse>(jsonString);
-            logger.LogInformation($"Record {addRecordResponse?.RecordId} added, affected entities: {addRecordResponse?.AffectedEntities.Count}");
+            var jsonString = szEngine.AddRecord(
+                record.DataSourceCode,
+                record.RecordId,
+                record.EntityJson,
+                SzFlag.SzWithInfo
+            );
+            var addRecordResponse = JsonSerializer.Deserialize<SzEngineAddRecordResponse>(
+                jsonString
+            );
+            logger.LogInformation(
+                $"Record {addRecordResponse?.RecordId} added, affected entities: {addRecordResponse?.AffectedEntities.Count}"
+            );
 
             if ((bool)addRecordResponse?.AffectedEntities.Any())
             {
                 foreach (var affectedEntity in addRecordResponse?.AffectedEntities)
                 {
-                    logger.LogInformation($"Affected Entity ID: {affectedEntity?.EntityId}");                    
+                    logger.LogInformation($"Affected Entity ID: {affectedEntity?.EntityId}");
                 }
             }
         }
     }
-    
+
     private static EntityRecord[] GetRecords()
     {
         return
@@ -49,7 +58,7 @@ public class RecordLoaderCommand(
                     AddrFull = "123 Main Street, Las Vegas, NV 89132",
                     PhoneType = "HOME",
                     PhoneNumber = "702-919-1300",
-                    EmailAddress = "bsmith@work.com"
+                    EmailAddress = "bsmith@work.com",
                 }
             ),
             new EntityRecord(
@@ -67,7 +76,7 @@ public class RecordLoaderCommand(
                     AddrState = "NV",
                     AddrPostalCode = "89111",
                     PhoneType = "MOBILE",
-                    PhoneNumber = "702-919-1300"
+                    PhoneNumber = "702-919-1300",
                 }
             ),
             new EntityRecord(
@@ -80,7 +89,7 @@ public class RecordLoaderCommand(
                     PrimaryNameLast = "Smith",
                     PrimaryNameMiddle = "J",
                     DateOfBirth = "12/11/1978",
-                    EmailAddress = "bsmith@work.com"
+                    EmailAddress = "bsmith@work.com",
                 }
             ),
             new EntityRecord(
@@ -96,7 +105,7 @@ public class RecordLoaderCommand(
                     AddrCity = "Las Vegas",
                     AddrState = "NV",
                     AddrPostalCode = "89132",
-                    EmailAddress = "bsmith@work.com"
+                    EmailAddress = "bsmith@work.com",
                 }
             ),
             new EntityRecord(
@@ -114,7 +123,7 @@ public class RecordLoaderCommand(
                     AddrLine1 = "123 E Main St",
                     AddrCity = "Henderson",
                     AddrState = "NV",
-                    AddrPostalCode = "89132"
+                    AddrPostalCode = "89132",
                 }
             ),
             new EntityRecord(
@@ -131,7 +140,7 @@ public class RecordLoaderCommand(
                     AddrLine1 = "100 Mutex Street",
                     AddrCity = "Rosebery",
                     AddrState = "NSW",
-                    AddrPostalCode = "2018"
+                    AddrPostalCode = "2018",
                 }
             ),
             new EntityRecord(
@@ -141,13 +150,11 @@ public class RecordLoaderCommand(
                 {
                     RecordType = "PERSON",
                     PrimaryNameFirst = "J",
-                    PrimaryNameLast = "Carmack"
+                    PrimaryNameLast = "Carmack",
                 }
             ),
         ];
-
     }
-
 
     // private static IList<DumbRecord> GetRecords()
     // {
