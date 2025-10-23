@@ -1,7 +1,11 @@
 using System.Reflection;
+using System.Text.Json;
 using Microsoft.Extensions.Logging;
 using Senzing.Sdk;
 using Senzing.Sdk.Core;
+using Senzing.Typedef;
+using SzConnyApp.SenzingV4.Models;
+using static Senzing.Sdk.SzFlags;
 
 namespace SzConnyApp.SenzingV4.Senzing;
 
@@ -70,4 +74,42 @@ public sealed class SzEnvironmentWrapper : ISzEnvironmentWrapper
     public SzEngine Engine => _szEnvironment.GetEngine();
 
     public SzDiagnostic Diagnostic => _szEnvironment.GetDiagnostic();
+
+    public SzEngineAddRecordResponse? AddFlatRecord(FlatRecord flatRecord)
+    {
+        return AddRecord(flatRecord.DataSourceCode, flatRecord.RecordId, flatRecord.Json);
+    }
+
+    public SzEngineAddRecordResponse? AddNestedRecord(NestedRecord nestedRecord)
+    {
+        return AddRecord(nestedRecord.DataSourceCode, nestedRecord.RecordId, nestedRecord.Json);
+    }
+
+    private SzEngineAddRecordResponse? AddRecord(
+        string dataSourceCode,
+        string recordId,
+        string recordJsonString
+    )
+    {
+        var addRecordResponseJsonString = Engine.AddRecord(
+            dataSourceCode,
+            recordId,
+            recordJsonString,
+            SzFlag.SzWithInfo
+        );
+        return JsonSerializer.Deserialize<SzEngineAddRecordResponse>(addRecordResponseJsonString);
+    }
+
+    public NestedRecord GetRecord(string dataSourceCode, string recordId)
+    {
+        var getRecordResponseJsonString = Engine.GetRecord(
+            dataSourceCode,
+            recordId,
+            SzRecordDefaultFlags
+        );
+        
+        var recordResponse = JsonSerializer.Deserialize<RecordResponse>(getRecordResponseJsonString);
+        
+        return NestedRecord.FromRecordResponse(recordResponse);
+    }
 }

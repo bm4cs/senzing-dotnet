@@ -2,10 +2,13 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Senzing.Typedef;
 using SzConnyApp;
 using SzConnyApp.Ontology;
 using SzConnyApp.SenzingV4;
 using SzConnyApp.SenzingV4.Commands;
+using SzConnyApp.SenzingV4.Models;
+using SzConnyApp.SenzingV4.Senzing;
 
 // private static ILogger logger;
 
@@ -26,6 +29,7 @@ public class EntryPoint
             .Default.ParseArguments<
                 GetEntityOptions,
                 ExportRecordsOptions,
+                ForceOptions,
                 LoadOptions,
                 PurgeOptions,
                 SearchOptions
@@ -38,6 +42,8 @@ public class EntryPoint
                 (PurgeOptions opts) =>
                     RunCommand(serviceProvider.GetService<IRepositoryPurgerCommand>()),
                 (SearchOptions opts) => RunCommand(serviceProvider.GetService<ISearchCommand>()),
+                (ForceOptions opts) =>
+                    RunCommand(serviceProvider.GetService<IForceResolveCommand>()),
                 (GetEntityOptions opts) =>
                 {
                     var command = serviceProvider.GetService<IGetEntityCommand>();
@@ -90,3 +96,6 @@ class GetEntityOptions : IOptions
 
 [Verb("export", HelpText = "Export all entities in the Senzing corpus.")]
 class ExportRecordsOptions : IOptions { }
+
+[Verb("force", HelpText = "Force resolve (merge) scenario.")]
+class ForceOptions : IOptions { }

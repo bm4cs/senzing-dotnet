@@ -15,18 +15,20 @@ public class RecordLoaderCommand(
 {
     public void Execute()
     {
-        var szEngine = szEnvironment.Engine;
         foreach (var record in GetRecords())
         {
-            var jsonString = szEngine.AddRecord(
-                record.DataSourceCode,
-                record.RecordId,
-                record.EntityJson,
-                SzFlag.SzWithInfo
-            );
-            var addRecordResponse = JsonSerializer.Deserialize<SzEngineAddRecordResponse>(
-                jsonString
-            );
+            SzEngineAddRecordResponse? addRecordResponse = null;
+
+            switch (record)
+            {
+                case FlatRecord flatRecord:
+                    addRecordResponse = szEnvironment.AddFlatRecord(flatRecord);
+                    break;
+                case NestedRecord nestedRecord:
+                    addRecordResponse = szEnvironment.AddNestedRecord(nestedRecord);
+                    break;
+            }
+
             logger.LogInformation(
                 $"Record {addRecordResponse?.RecordId} added, affected entities: {addRecordResponse?.AffectedEntities.Count}"
             );
@@ -41,11 +43,11 @@ public class RecordLoaderCommand(
         }
     }
 
-    private static EntityRecord[] GetRecords()
+    private static AbstractRecord[] GetRecords()
     {
         return
         [
-            new EntityRecord(
+            new FlatRecord(
                 "TEST",
                 "1001",
                 new SenzingEntitySpecification
@@ -61,7 +63,7 @@ public class RecordLoaderCommand(
                     EmailAddress = "bsmith@work.com",
                 }
             ),
-            new EntityRecord(
+            new FlatRecord(
                 "TEST",
                 "1002",
                 new SenzingEntitySpecification
@@ -79,7 +81,7 @@ public class RecordLoaderCommand(
                     PhoneNumber = "702-919-1300",
                 }
             ),
-            new EntityRecord(
+            new FlatRecord(
                 "TEST",
                 "1003",
                 new SenzingEntitySpecification
@@ -92,7 +94,7 @@ public class RecordLoaderCommand(
                     EmailAddress = "bsmith@work.com",
                 }
             ),
-            new EntityRecord(
+            new FlatRecord(
                 "TEST",
                 "1004",
                 new SenzingEntitySpecification
@@ -108,7 +110,7 @@ public class RecordLoaderCommand(
                     EmailAddress = "bsmith@work.com",
                 }
             ),
-            new EntityRecord(
+            new FlatRecord(
                 "TEST",
                 "1005",
                 new SenzingEntitySpecification
@@ -126,7 +128,7 @@ public class RecordLoaderCommand(
                     AddrPostalCode = "89132",
                 }
             ),
-            new EntityRecord(
+            new FlatRecord(
                 "TEST",
                 "1006",
                 new SenzingEntitySpecification
@@ -143,7 +145,7 @@ public class RecordLoaderCommand(
                     AddrPostalCode = "2018",
                 }
             ),
-            new EntityRecord(
+            new FlatRecord(
                 "TEST",
                 "1007",
                 new SenzingEntitySpecification
@@ -156,107 +158,55 @@ public class RecordLoaderCommand(
         ];
     }
 
-    // private static IList<DumbRecord> GetRecords()
-    // {
-    //     return
-    //     [
-    //         new DumbRecord(
-    //             "TEST",
-    //             "1001",
-    //             """
-    //             {
-    //                 "DATA_SOURCE": "TEST",
-    //                 "RECORD_ID": "1001",
-    //                 "RECORD_TYPE": "PERSON",
-    //                 "PRIMARY_NAME_FIRST": "Robert",
-    //                 "PRIMARY_NAME_LAST": "Smith",
-    //                 "DATE_OF_BIRTH": "12/11/1978",
-    //                 "ADDR_TYPE": "MAILING",
-    //                 "ADDR_FULL": "123 Main Street, Las Vegas, NV 89132",
-    //                 "PHONE_TYPE": "HOME",
-    //                 "PHONE_NUMBER": "702-919-1300",
-    //                 "EMAIL_ADDRESS": "bsmith@work.com"
-    //             }
-    //             """
-    //         ),
-    //         new DumbRecord(
-    //             "TEST",
-    //             "1002",
-    //             """
-    //             {
-    //                 "DATA_SOURCE": "TEST",
-    //                 "RECORD_ID": "1002",
-    //                 "RECORD_TYPE": "PERSON",
-    //                 "PRIMARY_NAME_FIRST": "Bob",
-    //                 "PRIMARY_NAME_LAST": "Smith",
-    //                 "PRIMARY_NAME_GENERATION": "II",
-    //                 "DATE_OF_BIRTH": "11/12/1978",
-    //                 "ADDR_TYPE": "HOME",
-    //                 "ADDR_LINE1": "1515 Adela Lane",
-    //                 "ADDR_CITY": "Las Vegas",
-    //                 "ADDR_STATE": "NV",
-    //                 "ADDR_POSTAL_CODE": "89111",
-    //                 "PHONE_TYPE": "MOBILE",
-    //                 "PHONE_NUMBER": "702-919-1300"
-    //             }
-    //             """
-    //         ),
-    //         new DumbRecord(
-    //             "TEST",
-    //             "1003",
-    //             """
-    //             {
-    //                 "DATA_SOURCE": "TEST",
-    //                 "RECORD_ID": "1003",
-    //                 "RECORD_TYPE": "PERSON",
-    //                 "PRIMARY_NAME_FIRST": "Bob",
-    //                 "PRIMARY_NAME_LAST": "Smith",
-    //                 "PRIMARY_NAME_MIDDLE": "J",
-    //                 "DATE_OF_BIRTH": "12/11/1978",
-    //                 "EMAIL_ADDRESS": "bsmith@work.com"
-    //             }
-    //             """
-    //         ),
-    //         new DumbRecord(
-    //             "TEST",
-    //             "1004",
-    //             """
-    //             {
-    //                 "DATA_SOURCE": "TEST",
-    //                 "RECORD_ID": "1004",
-    //                 "RECORD_TYPE": "PERSON",
-    //                 "PRIMARY_NAME_FIRST": "B",
-    //                 "PRIMARY_NAME_LAST": "Smith",
-    //                 "ADDR_TYPE": "HOME",
-    //                 "ADDR_LINE1": "1515 Adela Ln",
-    //                 "ADDR_CITY": "Las Vegas",
-    //                 "ADDR_STATE": "NV",
-    //                 "ADDR_POSTAL_CODE": "89132",
-    //                 "EMAIL_ADDRESS": "bsmith@work.com"
-    //             }
-    //             """
-    //         ),
-    //         new DumbRecord(
-    //             "TEST",
-    //             "1005",
-    //             """
-    //             {
-    //                 "DATA_SOURCE": "TEST",
-    //                 "RECORD_ID": "1005",
-    //                 "RECORD_TYPE": "PERSON",
-    //                 "PRIMARY_NAME_FIRST": "Rob",
-    //                 "PRIMARY_NAME_MIDDLE": "E",
-    //                 "PRIMARY_NAME_LAST": "Smith",
-    //                 "DRIVERS_LICENSE_NUMBER": "112233",
-    //                 "DRIVERS_LICENSE_STATE": "NV",
-    //                 "ADDR_TYPE": "MAILING",
-    //                 "ADDR_LINE1": "123 E Main St",
-    //                 "ADDR_CITY": "Henderson",
-    //                 "ADDR_STATE": "NV",
-    //                 "ADDR_POSTAL_CODE": "89132"
-    //             }
-    //             """
-    //         ),
-    //     ];
-    // }
+    private static NestedRecord[] GetNestedRecords()
+    {
+        return
+        [
+            new NestedRecord(
+                "TEST",
+                "1008",
+                new List<SenzingEntitySpecification>()
+                {
+                    new() { RecordType = "PERSON" },
+                    new()
+                    {
+                        NameType = SzNameTypes.Primary,
+                        NameFirst = "Johny",
+                        NameLast = "Mack",
+                    },
+                    new()
+                    {
+                        AddrType = SzAddressTypes.Home,
+                        AddrLine1 = "100 Mutex Street",
+                        AddrCity = "Rosebery",
+                        AddrState = "NSW",
+                        AddrPostalCode = "2018",
+                    },
+                }
+            ),
+            new NestedRecord(
+                "TEST",
+                "1009",
+                new List<SenzingEntitySpecification>()
+                {
+                    new() { RecordType = "PERSON" },
+                    new()
+                    {
+                        NameType = SzNameTypes.Primary,
+                        PrimaryNameFirst = "J",
+                        PrimaryNameLast = "Carmack",
+                    },
+                    new() { NameType = SzNameTypes.NickName, NameLast = "J Mack" },
+                    new()
+                    {
+                        AddrType = SzAddressTypes.Home,
+                        AddrLine1 = "100 Mutex Street",
+                        AddrCity = "Rosebery",
+                        AddrState = "NSW",
+                        AddrPostalCode = "2018",
+                    },
+                }
+            ),
+        ];
+    }
 }

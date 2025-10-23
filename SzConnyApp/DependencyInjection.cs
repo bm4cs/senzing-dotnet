@@ -19,6 +19,7 @@ public static class DependencyInjection
         services.AddTransient<IRecordLoaderCommand, RecordLoaderCommand>();
         services.AddTransient<IRepositoryPurgerCommand, RepositoryPurgerCommand>();
         services.AddTransient<ISearchCommand, SearchCommand>();
+        services.AddTransient<IForceResolveCommand, ForceResolveCommand>();
     }
 
     public static void ConfigureLogging(this IServiceCollection services)
