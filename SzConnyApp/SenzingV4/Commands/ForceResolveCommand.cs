@@ -13,8 +13,13 @@ public class ForceResolveCommand(
 {
     public void Execute()
     {
+        // Stage 0: Purge senzing repository `./SzConnyApp purge`
+        
+        
         // Stage 1: Seed data
-        foreach (var nestedRecord in GetNestedRecords())
+        var sampleRecords = GetSampleRecords();
+        
+        foreach (var nestedRecord in sampleRecords)
         {
             var addRecordResponse = szEnvironment.AddNestedRecord(nestedRecord);
 
@@ -31,16 +36,31 @@ public class ForceResolveCommand(
             }
         }
 
-        // Stage 2: Run 'SzConnyApp export' or sz_explorer - the 3 record should have created 3 separate entities
-
-        // Stage 3: Force resolve record 101 and 103
-        var record101 = szEnvironment.GetRecord("TEST", "101");
-        var record103 = szEnvironment.GetRecord("TEST", "103");
         
-        // Stage 4: 
+        // Stage 2: Run 'SzConnyApp export' or sz_explorer - there should be 3 discrete entities
+
+        
+        // Stage 3: Force resolve record 101 and 103
+        // foreach (var record in new[] { sampleRecords[0], sampleRecords[2] })
+        // {
+        //     var trustedIdFeature = new SenzingEntitySpecification
+        //     {
+        //         TrustedIdNumber = "TEST_101-TEST_103",
+        //         TrustedIdType = SzTrustedIdType.ForceResolve
+        //     };
+        //     record.Features.Add(trustedIdFeature);
+        //     var addRecordResponse = szEnvironment.AddNestedRecord(record);
+        //     logger.LogInformation(
+        //         $"Record {addRecordResponse?.RecordId} added with TRUSTED_ID, affected entities: {addRecordResponse?.AffectedEntities.Count}"
+        //     );
+        // }
+
+
+        // Stage 4: Run 'SzConnyApp export' or sz_explorer `why 1` - there should be 2 discrete entities
+
     }
 
-    private static NestedRecord[] GetNestedRecords()
+    private static NestedRecord[] GetSampleRecords()
     {
         return
         [

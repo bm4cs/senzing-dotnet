@@ -22,3 +22,8 @@ public static class SzPhoneTypes
     public const string Mobile = "MOBILE";
     public const string Work = "WORK";
 }
+
+public static class SzTrustedIdType
+{
+    public const string ForceResolve = "FORCE_RESOLVE";
+}
