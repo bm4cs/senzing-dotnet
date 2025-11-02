@@ -1,0 +1,12 @@
+{
+  "DATA_SOURCE": "TEST",
+  "RECORD_ID": "103",
+  "AFFECTED_ENTITIES": [
+    {
+      "ENTITY_ID": 1
+    },
+    {
+      "ENTITY_ID": 3
+    }
+  ]
+}

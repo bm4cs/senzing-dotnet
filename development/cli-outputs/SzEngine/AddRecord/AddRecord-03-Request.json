@@ -1,0 +1,21 @@
+{
+  "FEATURES": [
+    {
+      "RECORD_TYPE": "PERSON"
+    },
+    {
+      "NAME_FULL": "Pat Smith",
+      "NAME_TYPE": "PRIMARY"
+    },
+    {
+      "ADDR_FULL": "7-9 West St, North Sydney, NSW, 2060",
+      "ADDR_TYPE": "HOME"
+    },
+    {
+      "PHONE_NUMBER": "(02) 9956 5230",
+      "PHONE_TYPE": "HOME"
+    }
+  ],
+  "RECORD_ID": "103",
+  "DATA_SOURCE": "TEST"
+}

@@ -1,0 +1,32 @@
+{
+  "FEATURES": [
+    {
+      "RECORD_TYPE": "PERSON"
+    },
+    {
+      "NAME_FULL": "Patrick Smith",
+      "NAME_TYPE": "PRIMARY"
+    },
+    {
+      "NAME_FULL": "Paddy Smith",
+      "NAME_TYPE": "AKA"
+    },
+    {
+      "ADDR_FULL": "7-9 West St, North Sydney, NSW, 2060",
+      "ADDR_TYPE": "HOME"
+    },
+    {
+      "PHONE_NUMBER": "(02) 9956 5230",
+      "PHONE_TYPE": "HOME"
+    },
+    {
+      "DATE_OF_BIRTH": "1990-12-01"
+    },
+    {
+      "TRUSTED_ID_NUMBER": "TEST_101-TEST_103",
+      "TRUSTED_ID_TYPE": "FORCE_RESOLVE"
+    }
+  ],
+  "RECORD_ID": "101",
+  "DATA_SOURCE": "TEST"
+}

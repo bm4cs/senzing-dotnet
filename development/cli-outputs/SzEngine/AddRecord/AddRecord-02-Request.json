@@ -1,0 +1,28 @@
+{
+  "FEATURES": [
+    {
+      "RECORD_TYPE": "PERSON"
+    },
+    {
+      "NAME_FULL": "Patricia Smith",
+      "NAME_TYPE": "PRIMARY"
+    },
+    {
+      "NAME_FULL": "Paddy Smith",
+      "NAME_TYPE": "AKA"
+    },
+    {
+      "ADDR_FULL": "7-9 West St, North Sydney, NSW, 2060",
+      "ADDR_TYPE": "HOME"
+    },
+    {
+      "PHONE_NUMBER": "(02) 9956 5230",
+      "PHONE_TYPE": "HOME"
+    },
+    {
+      "DATE_OF_BIRTH": "1994-05-04"
+    }
+  ],
+  "RECORD_ID": "102",
+  "DATA_SOURCE": "TEST"
+}
