@@ -7,7 +7,7 @@
 `SzConnyApp/SenzingV4/Senzing.Typedef` contains generated POCO's to represent I/O for all Senzing SDK interactions.
 
 1. Install [jtd-codegen](https://github.com/jsontypedef/json-typedef-codegen)
-2. `git clone git@github.com:senzing-garage/sz-sdk-json-type-definition.git`
+2. Clone [sz-sdk-json-type-definition](https://github.com/senzing-garage/sz-sdk-json-type-definition)
 3. `make clean-csharp`
 4. `make generate-csharp`
 

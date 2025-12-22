@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Text.Json.Nodes;
 using Microsoft.Extensions.Logging;
 using Senzing.Typedef;
@@ -28,13 +29,12 @@ public class ExportRecordsCommand(
                 //         "ENTITY_NAME" : "Robert Smith",
                 //         "FEATURES" : {
 
-                var resolvedEntity = JsonNode.Parse(jsonData)?.AsObject()["RESOLVED_ENTITY"];
+                // var resolvedEntity = JsonNode.Parse(jsonData)?.AsObject()["RESOLVED_ENTITY"];
+                // var entityId = resolvedEntity?.AsObject()["ENTITY_ID"]?.GetValue<int>();
+                // var entityName = resolvedEntity?.AsObject()["ENTITY_NAME"]?.GetValue<string>();
+                // logger.LogInformation($"Found entity: {entityId} = {entityName}");
 
-                var entityId = resolvedEntity?.AsObject()["ENTITY_ID"]?.GetValue<int>();
-
-                var entityName = resolvedEntity?.AsObject()["ENTITY_NAME"]?.GetValue<string>();
-
-                logger.LogInformation($"Found entity: {entityId} = {entityName}");
+                logger.LogInformation(JsonNode.Parse(jsonData)?.ToString());
 
                 jsonData = szEngine.FetchNext(exportHandle);
             }
