@@ -8,5 +8,6 @@
     <File Path=".env" />
     <File Path=".gitignore" />
   </Folder>
+  <Project Path="EntityResolutionSource.Senzing/EntityResolutionSource.Senzing.csproj" />
   <Project Path="SzConnyApp/SzConnyApp.csproj" />
 </Solution>
